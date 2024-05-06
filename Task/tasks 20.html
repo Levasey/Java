@@ -1,0 +1,859 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset='utf-8'/><title>20 Возврат значения</title><style>.check_single {
+    margin:15px;
+	border:1px solid black;
+	padding:5px;
+    width:calc(100% - 40px);
+}
+sqrt val {
+	border-top: 1px solid black;
+}
+sqrt:before {
+	content:"\221A";
+}
+.section {
+	counter-reset:section;
+}
+.section h3:after {
+	counter-increment:section;
+	content: " " counter(section);
+}
+table {
+	border-collapse:collapse;
+}
+.check_values, .check_values_v2 {
+	width:100%;
+	counter-reset:test_case;
+}
+.check_values td:first-child::before {
+	counter-increment:test_case;
+	content: counter(test_case);
+}
+table td, table th {
+	border:1px solid black;
+	text-align:center;
+}
+.check_values td:first-child, .check_values_v2 td:first-child{
+	width:40px;
+}
+.check_values td, .check_values_v2 td {
+    max-width: 450px;
+}
+.lab_nav ol {
+	list-style:none;
+}
+.nav {
+	position:fixed;
+	top:0;
+	right:0;
+	margin:15px;
+	clear:both;
+}
+.nav ul{
+	list-style-type:none;
+	padding:0;
+	float:left;
+}
+.nav li {
+	margin:2px;
+	border:1px solid black;
+}
+.nav li a {
+	display:block;
+	padding:7px;
+}
+.task_block {
+	width:80%;
+	page-break-inside:avoid;
+	padding:10px;
+	display:block;
+}
+.task_block:target{
+	background-color:lightgrey;
+}
+.task_block:target .task_id{
+	color:white;
+}
+.task_id {
+	float:right;
+	color:lightgrey;
+}
+.quiz_block {
+	width:80%;
+}
+.quiz_block:target{
+	background-color:lightgrey;
+}
+.task_desc {
+	margin:5px;
+}
+.example_image {
+	width:200px;
+}
+.lab_nav {
+	width:80%;
+	overflow:auto;
+}
+.check_values .preformatted, .preformatted {
+	font-family:monospace;
+	white-space-collapse:preserve;
+	white-space:pre;
+    text-wrap:pretty;
+	text-align:left;
+	padding:10px;
+}
+.stream_values tr td:nth-child(3) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values tr:nth-child(2) td:nth-child(2) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr td:nth-child(1){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr.test_row td:nth-child(2){
+    text-align:right;
+}
+.stream_values tr td:nth-child(2){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values .preformatted{
+    padding: 0;
+}
+.stream_values tr.test_row td {
+    border-top-width:1px;
+}
+.stream_values tr.test_row td:first-of-type {
+    border-top-width:1px;
+    border-bottom-width:1px;
+    text-align:center;
+    width:15px;
+}
+.stream_values tr:last-of-type td {
+    border-bottom-width:1px;
+}
+.stream_values {
+    width:100%;
+}
+formula {
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+}
+fraction {
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+}
+formula .abs{
+	border-left: solid black 1px;
+    border-right: solid black 1px;
+    padding: 2px;
+}
+numerator {
+	display:block;
+	border-bottom:2px solid black;
+}
+denominator {
+	display:block;
+}
+.comment{
+	color:darkgrey;
+}
+.step{
+	display:none;
+}
+.step:last-child, .step:target{
+	display:block;
+}
+.step:target ~ .step:last-child{
+	display:none;
+}
+.console{
+	background-color:black;
+	color:white;
+	width:300px;
+}
+.zoom{
+	background-color:lightgrey;
+	font-size:40pt;
+	padding:0 10px;
+}
+.task_block:target .zoom {
+    background-color:white;
+}</style><meta name="author" content="Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2019"/></head><body class='section'><a name='heading'><h1>Возврат значения</h1></a><div class='lab_nav'>Другие темы<ol>
+<li>1 <a href='tasks 1.html'>Печать текста на экран</a></li>
+<li>2 <a href='tasks 2.html'>Заполнение шаблона данными от пользователя</a></li>
+<li>3 <a href='tasks 3.html'>Организация вычислений</a></li>
+<li>4 <a href='tasks 4.html'>Проверка исходных данных</a></li>
+<li>5 <a href='tasks 5.html'>Запуск программы с известными исходными данными</a></li>
+<li>6 <a href='tasks 6.html'>Взаимоисключающие случаи</a></li>
+<li>7 <a href='tasks 7.html'>Работа с интервалами значений</a></li>
+<li>8 <a href='tasks 8.html'>Реорганизация повторяющихся действий</a></li>
+<li>9 <a href='tasks 9.html'>Обработка неизвестного объема данных</a></li>
+<li>10 <a href='tasks 10.html'>Вложенные циклы</a></li>
+<li>11 <a href='tasks 11.html'>Базовые операции с массивами</a></li>
+<li>12 <a href='tasks 12.html'>Перестановки элементов массива</a></li>
+<li>13 <a href='tasks 13.html'>Использование числовых массивов</a></li>
+<li>14 <a href='tasks 14.html'>Вычисление агрегатов</a></li>
+<li>15 <a href='tasks 15.html'>Поиск в массиве</a></li>
+<li>16 <a href='tasks 16.html'>Сортировка вставкой</a></li>
+<li>17 <a href='tasks 17.html'>Строки</a></li>
+<li>18 <a href='tasks 18.html'>Чтение файлов</a></li>
+<li>19 <a href='tasks 19.html'>Запись в файлы</a></li>
+<li>20 <a href='tasks 20.html'>Возврат значения</a></li>
+<li>21 <a href='tasks 21.html'>Перехват исключений</a></li>
+<li>22 <a href='tasks 22.html'>Выбрасывание исключений</a></li>
+<li>23 <a href='tasks 23.html'>Составные типы данных</a></li>
+<li>24 <a href='tasks 24.html'>Внутреннее состояние</a></li>
+<li>25 <a href='tasks 25.html'>Коллекции</a></li>
+<li>26 <a href='tasks 26.html'>Рекурсия</a></li>
+<li>27 <a href='tasks 27.html'>Даты</a></li>
+<li>28 <a href='tasks 28.html'>Комбинаторика</a></li>
+<li>29 <a href='tasks 29.html'>SQL СУБД</a></li>
+</ol></div><div class='nav'><ul><li><a href='#heading'>^</a></li><li><a href='#task7611' class='example'>1*</a><li><a href='#task4776'>2</a><li><a href='#task4757' class='example'>3*</a><li><a href='#task3597'>4</a><li><a href='#task6573'>5</a><li><a href='#task3355' class='example'>6*</a><li><a href='#task3147'>7</a><li><a href='#task6948' class='example'>8*</a><li><a href='#task8920'>9</a></ul><ul><li><a href='#task1995' class='example'>10*</a><li><a href='#task7759'>11</a><li><a href='#task2936' class='example'>12*</a><li><a href='#task3539'>13</a><li><a href='#task2121' class='example'>14*</a><li><a href='#task6401'>15</a><li><a href='#task7581'>16</a></ul></div><div class="task_block" id="info01">
+    <h4>Подготовка проекта</h4>
+	<div class="task_desc">Создайте проект с помощью maven.
+<ol>
+	<li>Откройте IntellijIDEA. Выберите пункт меню File, затем New, затем Project.</li>
+	<li>В появившемся окне на панели слева выберите Maven. Нажмите Next.</li>
+	<li>В поле groupId укажите "(ваш логин на гитхабе).github.io". В поле artifactId укажите "stage2". Нажмите Next.</li>
+	<li>Проверьте что Project name содержит "stage2". Установите свойство Project location так, чтобы в нем был абсолютный путь к вашему репозиторию.</li>
+	<li>Нажмите Finish.</li>
+</ol>
+	</div>
+    <div class="task_desc">У вас должен создаться проект со следующей структурой файлов:</div>
+	<img src="images/maven_project_structure.png">
+<ol start="6">
+<li>Содержимое папки <i>с исходным кодом</i> "src/main/java" будет компилироваться и компоноваться в запускаемую программу.</li>
+<li>Папка "src/main/resources" предназначена для хранения файлов с исходными данными.</li>
+<li>В папке с исходным кодом создайте класс Library. Он будет содержать методы для решения задач.</li>
+<li>В папке с исходным кодом создайте класс Program. Это вспомогательная программа для проверки методов из класса Library.</li>
+<li>Создайте метод main в классе Program по аналогии с методами main из задач прошлых лабораторных.</li>
+</ol>
+</div><div id='task7611' class='task_block'>
+<div class='task_id'>7611</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Вычислить результат по формуле x + 7.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task7611.</li><li>Он принимает в качестве аргументов 1 действительное число.</li><li>Он возвращает действительное число</li><li>В теле метода верните результат решения задачи, используя значение аргумента в качестве исходных данных</li></ol><div class='task_desc'>
+Код метода будет выглядеть так:
+</div>
+<div class='check_single preformatted'>public class Library {
+    public static double task7611(double x) {
+        double res;
+        res =  x + 7;
+        return res;
+    }
+}</div>
+<div class='task_desc'>
+В методе main класса Program добавьте следующий код:
+</div>
+<div class='check_single preformatted'>double result;
+result = Library.task7611(11.13);//в качестве аргумента передано число
+System.out.printf("%.4f\n", result);
+double value = -79.19;
+result = Library.task7611(value);//в качестве аргумента передано значение переменной
+System.out.printf("%.4f\n", result);
+System.out.printf("%.4f\n", Library.task7611(0));//результат используется без промежуточной переменной
+</div>
+<div class='task_desc'>
+В результате запуска метода main класса Program, в консоли должен появиться текст:
+</div>
+<div class='check_single preformatted'>18,1300
+-72,1900
+7,0000
+</div>
+</div>
+<div id='task4776' class='task_block'>
+<div class='task_id'>4776</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Вычислить результат по формуле.<formula>
+		<sqrt><val>
+			1-sin<sup>2</sup>(xRad)
+		</val></sqrt>
+	</formula>
+</div>
+<div class='task_desc'>
+Значение угла дано в градусах. Метод для вычисления синуса был рассмотрен в задаче <a href="tasks 3.html#task7711" target="_blank">ЛР3#7711(открыть в новой вкладке)</a>
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод Task4776.</li><li>Он принимает в качестве аргумента 1 действительное число и возвращает действительное число.</li><li>В теле метода вычислите результат и верните его</li></ol><div class='task_desc'>
+В методе main класса Program добавьте следующий код:
+</div>
+<div class='check_single preformatted'>double result;
+result = TaskCs4776.Library.task4776(69.97);
+System.out.printf("%.4f\n", result);
+//для наглядности проверки можно писать дополнительные условия
+if (0.9395 &lt;= result && result &lt;= 0.9396) {
+    System.out.println("Верно");
+} else {
+    System.out.println("Результат некорректный");
+}
+result = TaskCs4776.Library.task4776(31);
+System.out.printf("%.4f\n", result);
+System.out.printf("%.4f\n", TaskCs4776.Library.task4776(90));
+</div>
+<div class='task_desc'>
+В результате запуска метода main класса Program, в консоли должен появиться текст:
+</div>
+<div class='check_single preformatted'>0,9395
+Верно
+0,5150
+1,0000
+</div>
+</div>
+<div id='task4757' class='task_block'>
+<div class='task_id'>4757</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Даны два числа, нужно вычесть из большего числа меньшее.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>first</th><th>second</th></tr>
+<tr>
+<td>1</td><td>99</td><td>17</td><td class='preformatted'>82
+</td></tr>
+<tr>
+<td>2</td><td>14</td><td>5</td><td class='preformatted'>9
+</td></tr>
+</table>
+<div class='task_desc'>
+При работе с методами вы можете встретить ошибку компиляции "missing return statement". Пример когда у вас программа без ветвлений:
+</div>
+<div class='check_single preformatted'>public static int Sum(int a, int b){
+    int result;
+    result = a + b;
+}</div>
+<div class='task_desc'>
+В этом случае для исправления нужно только дописать команду "return result;" как в примере ниже:
+</div>
+<div class='check_single preformatted'>public static int Sum(int a, int b){
+    int result;
+    result = a + b;
+    return result;//эта команда добавлена
+}</div>
+<div class='task_desc'>
+Если же ваша программа содержит ветвления (if), то ошибка "missing return statement" возникает в случае когда вы написали метод примерно так:
+</div>
+<div class='check_single preformatted'>public static int diff(int a, int b) {
+    int result;
+    if (a < b) {
+        result = b - a;
+        return result;
+    }
+    if (b < a) {
+        result = a - b;
+        return result;
+    }
+}</div>
+<div class='task_desc'>
+При компиляции, компьютер выполняет предварительный анализ кода. В этом примере он видит что команды return находятся внутри ветвлений. Для компьютера возможна ситуация, когда оба условия if будут ложны, а значит ни одна из команд return не будет выполнена. В данном примере - когда a строго равно b. Первый вариант исправления - предусмотреть return "на всякий случай" как в примере ниже:
+</div>
+<div class='check_single preformatted'>public static int diff(int a, int b) {
+    int result;
+    if (a < b) {
+        result = b - a;
+        return result;
+    }
+    if (b < a) {
+        result = a - b;
+        return result;
+    }
+    return 0;//на всякий случай
+}</div>
+<div class='task_desc'>
+Другой вариант исправления - использовать if else. Если условие будет ложно, то будут выполнены команды из else. Если истинно - команды из if. Компьютер считает, что хотя бы одна из команд return будет выполнена Как в примере ниже:
+</div>
+<div class='check_single preformatted'>public static int diff(int a, int b) {
+    int result;
+    if (a < b) {
+        result = b - a;
+        return result;
+    }
+    else {//здесь раньше был if (b < a)
+        result = a - b;
+        return result;
+    }
+}</div>
+</div>
+<div id='task3597' class='task_block'>
+<div class='task_id'>3597</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Даны вещественные числа a, b, c. Если a равно 0, вернуть сообщение об ошибке "Уравнение не является квадратным". Найдите в прошлых работах формулу для вычисления дискриминанта, вычислите его и напишите одно из трех сообщений в зависимости от полученного значения.
+</div>
+<ol start='1'><li>Если дискриминант равен 0, то у уравнения один вещественный корень.</li><li>Если дискриминант меньше 0, то у уравнения нет вещественных корней.</li><li>Если дискриминант больше 0, то у уравнения два вещественных корня.</li></ol><ol start='4'><li>В классе Library реализуйте публичный статический метод task3597.</li><li>Он принимает в качестве аргумента 3 действительных числа и возвращает строку.</li><li>В теле метода верните результат решения задачи, используя значения аргументов в качестве исходных данных.</li></ol><div class='task_desc'>
+В методе main класса Program добавьте следующий код:
+</div>
+<div class='check_single preformatted'>String result;
+result = Library.task3597(1, 2, 3);
+System.out.println(result);
+result = Library.task3597(11, 13, 19);
+System.out.println(result);
+double a, b, c;
+a = 3;
+b = 17;
+c = 5;
+System.out.println(Library.task3597(a, b, c));
+a = 5;
+b = 31;
+c = 29;
+System.out.println(Library.task3597(a, b, c));
+System.out.println(Library.task3597(3, 6, 3));
+System.out.println(Library.task3597(1, 2, 1));
+System.out.println(Library.task3597(0, 7, 13));
+</div>
+<div class='task_desc'>
+В результате запуска метода main класса Program, в консоли должен появиться текст:
+</div>
+<div class='check_single preformatted'>Вещественных корней уравнения 1.0x^2 + 2.0x + 3.0 = 0 нет
+Вещественных корней уравнения 11.0x^2 + 13.0x + 19.0 = 0 нет
+У уравнения 3.0x^2 + 17.0x + 5.0 = 0 два вещественных корня
+У уравнения 5.0x^2 + 31.0x + 29.0 = 0 два вещественных корня
+Уравнение 3.0x^2 + 6.0x + 3.0 = 0 имеет один корень
+Уравнение 1.0x^2 + 2.0x + 1.0 = 0 имеет один корень
+Данное уравнение не является квадратным
+</div>
+</div>
+<div id='task6573' class='task_block'>
+<div class='task_id'>6573</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Найти произведение всех целых чисел от А до B включительно. Значение A может быть как меньше, так и больше B. Для хранения результата используйте переменную типа long. Этот тип поддерживает очень большие целые числа.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task6573.</li><li>Он принимает в качестве аргумента 2 целых числа и возвращает большое целое число.</li><li>В теле метода нужно вернуть результат решения задачи, используя значения аргументов в качестве исходных данных.</li></ol><div class='task_desc'>
+В методе main класса Program добавьте следующий код:
+</div>
+<div class='check_single preformatted'>long result;
+result = Library.task6573(8, 13);
+System.out.println(result);
+result = Library.task6573(13, 8);
+System.out.println(result);
+int from, to;
+from = 159;
+to = 161;
+result = Library.task6573(from, to);
+System.out.println(result);
+from = -2;
+to = 600;
+System.out.println(Library.task6573(from, to));
+System.out.println(Library.task6573(648, 648));
+System.out.println(Library.task6573(35, 24));
+</div>
+<div class='task_desc'>
+В результате запуска метода main класса Program, в консоли должен появиться текст:
+</div>
+<div class='check_single preformatted'>1235520
+1235520
+4095840
+0
+648
+399703747322880000
+</div>
+</div>
+<div id='task3355' class='task_block'>
+<div class='task_id'>3355</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит число total. Сформируйте текст сообщения, который состоит из нескольких частей. Основная часть сообщения содержит все целые числа от 1 до total включительно. Перед каждым числом нужно написать слово "Глава". В начале сообщения должно находиться слово "Введение", а после всех чисел - слово "Заключение". Для оформления сообщения в несколько строк, добавьте спецсимвол "\n" в конце каждой строки.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task3355.</li><li>Метод принимает одно целое число как аргумент и возвращает строку.</li><li>В теле метода нельзя использовать команды вывода в консоль.</li></ol><table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (total)</th><th>Результат</th></tr>
+<tr><td>1</td><td>0</td><td class='preformatted'>Введение
+Заключение
+</td></tr>
+<tr><td>2</td><td>1</td><td class='preformatted'>Введение
+Глава 1
+Заключение
+</td></tr>
+<tr><td>3</td><td>2</td><td class='preformatted'>Введение
+Глава 1
+Глава 2
+Заключение
+</td></tr>
+<tr><td>4</td><td>3</td><td class='preformatted'>Введение
+Глава 1
+Глава 2
+Глава 3
+Заключение
+</td></tr>
+<tr><td>5</td><td>4</td><td class='preformatted'>Введение
+Глава 1
+Глава 2
+Глава 3
+Глава 4
+Заключение
+</td></tr>
+<tr><td>6</td><td>6</td><td class='preformatted'>Введение
+Глава 1
+Глава 2
+Глава 3
+Глава 4
+Глава 5
+Глава 6
+Заключение
+</td></tr>
+<tr><td>7</td><td>5</td><td class='preformatted'>Введение
+Глава 1
+Глава 2
+Глава 3
+Глава 4
+Глава 5
+Заключение
+</td></tr>
+<tr><td>8</td><td>20</td><td class='preformatted'>Введение
+Глава 1
+Глава 2
+Глава 3
+Глава 4
+Глава 5
+Глава 6
+Глава 7
+Глава 8
+Глава 9
+Глава 10
+Глава 11
+Глава 12
+Глава 13
+Глава 14
+Глава 15
+Глава 16
+Глава 17
+Глава 18
+Глава 19
+Глава 20
+Заключение
+</td></tr>
+</table>
+<div class='task_desc'>
+Чтобы сформировать сообщение из нескольких частей, можно использовать промежуточную переменную как в примере ниже:
+</div>
+<div class='check_single preformatted'>String temp = "Введение\n";
+temp = temp + "Глава 1\n";
+temp = temp + "Глава 2\n";
+temp = temp + "Заключение";
+return temp;</div>
+</div>
+<div id='task3147' class='task_block'>
+<div class='task_id'>3147</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит символ (needle), который может быть одной из букв: a,b,c,d,e,f,g,h. Нужно выводить все эти буквы в строчку, пока не будет выведена буква X.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task1292.</li><li>Он принимает символ и возвращает строку.</li></ol><table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (needle)</th><th>Результат</th></tr>
+<tr><td>1</td><td>a</td><td class='preformatted'>a
+</td></tr>
+<tr><td>2</td><td>b</td><td class='preformatted'>ab
+</td></tr>
+<tr><td>3</td><td>d</td><td class='preformatted'>abcd
+</td></tr>
+<tr><td>4</td><td>h</td><td class='preformatted'>abcdefgh
+</td></tr>
+<tr><td>5</td><td>i</td><td class='preformatted'>abcdefgh
+</td></tr>
+</table>
+</div>
+<div id='task6948' class='task_block'>
+<div class='task_id'>6948</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит данные - целые числа, разделенные пробелами. Найти среднее арифметическое введенных элементов. Вывести с точностью 6 знаков после запятой.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task6948.</li><li>В качестве аргумента принимает массив целых чисел.</li><li>Возвращает действительное число.</li></ol><div class='task_desc'>
+Добавьте в метод main класса Program следующий код
+</div>
+<div class='check_single preformatted'>int[] values;
+values = new int[]{9, 8, 9, 1, 1, 5, 1, 1};
+double result;
+result = Library.task6948(values);
+System.out.printf("%.6f\n", result);
+values = new int[]{1, 2, 3, 4, 1, 3, 4, 4, 4, 4};
+result = Library.task6948(values);
+System.out.printf("%.6f\n", result);
+result = Library.task6948(new int[]{5, 5, 5, 5, 5});
+System.out.printf("%.6f\n", result);
+result = Library.task6948(new int[]{});
+System.out.printf("%.6f\n", result);
+int[] array = new int[]{1, 9, 1, 30, 9, 1, 100};
+System.out.printf("%.6f\n", Library.task6948(array));
+System.out.printf("%.6f\n",
+        Library.task6948(new int[]{
+                100000, 1, 1
+        })
+);
+</div>
+<div class='task_desc'>
+В результате запуска метода main класса Program, должен получиться такой результат:
+</div>
+<div class='check_single preformatted'>4,375000
+3,000000
+5,000000
+0,000000
+21,571429
+33334,000000
+</div>
+</div>
+<div id='task8920' class='task_block'>
+<div class='task_id'>8920</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит фрагмент K и данные - символы, разделенные пробелами. Посчитать сколько раз встречается фрагмент K в массиве.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task8920</li><li>Метод принимает два аргумента: строку и массив строк</li><li>Метод возвращает число</li></ol><table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>K</th><th>data</th></tr>
+<tr>
+<td>1</td><td>e</td><td>q w e r q w</td><td class='preformatted'>1
+</td></tr>
+<tr>
+<td>2</td><td>t</td><td>q w e r q w e r q w e</td><td class='preformatted'>0
+</td></tr>
+<tr>
+<td>3</td><td>w</td><td>e w w w w w</td><td class='preformatted'>5
+</td></tr>
+<tr>
+<td>4</td><td>q</td><td>r r r r r r</td><td class='preformatted'>0
+</td></tr>
+<tr>
+<td>5</td><td>qw</td><td>qw er ty qw</td><td class='preformatted'>2
+</td></tr>
+</table>
+</div>
+<div id='task1995' class='task_block'>
+<div class='task_id'>1995</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит два массива данных - фрагменты текста. Вывести на экран индекс элемента, на котором массивы начинают отличаться. Если длина массиов отличается сообщите тот индекс, который существует только в одном из массивов.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод compareArrays.</li><li>Он принимает в качестве аргументов 2 массива целых чисел</li><li>Он возвращает строку</li><li>В теле метода сформируйте ответ и верните его. Используйте значения аргументов в качестве исходных данных.</li></ol><div class='task_desc'>
+В методе main класса Program добавьте следующий код:
+</div>
+<div class='check_single preformatted'>int[] standard = new int[]{5, 4, 3, 2, 1};
+int[] array = new int[]{5, 4, 3, 2, 1};
+String result = Library.compareArrays(standard, array);
+System.out.println(result);
+array = new int[]{5, 4, 3};
+result = Library.compareArrays(standard, array);
+System.out.println(result);
+System.out.println(Library.compareArrays(
+        new int[]{9, 8, 7, 6},
+        new int[]{9, 8, 7, 6, 5}
+));
+standard = new int[]{9, 8, 7, 6, 5};
+array = new int[]{9, 111, 7};
+System.out.println(Library.compareArrays(standard, array));
+array = new int[]{6, 5, 4, 3, 2, 1};
+System.out.println(Library.compareArrays(
+        new int[]{6, 5, 0, 3},
+        array
+));
+</div>
+<div class='task_desc'>
+В результате запуска метода main класса Program, в консоли должен появиться текст:
+</div>
+<div class='check_single preformatted'>Массивы одинаковы
+Массивы начинают различаться на индексе 3
+Массивы начинают различаться на индексе 4
+Массивы начинают различаться на индексе 1
+Массивы начинают различаться на индексе 2
+</div>
+</div>
+<div id='task7759' class='task_block'>
+<div class='task_id'>7759</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит данные - целые числа, разделенные пробелами. Найти абсолютное отклонение каждого элемента от среднего арифметического данных значений.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод task7759</li><li>Метод принимает один аргумент - массив целых чисел</li><li>Метод возвращает массив действительных чисел</li></ol><table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (numbers)</th><th>Результат</th></tr>
+<tr><td>1</td><td>9 8 9 1 1 5 1 1</td><td class='preformatted'>4,6250  3,6250  4,6250  3,3750  3,3750  0,6250  3,3750  3,3750  </td></tr>
+<tr><td>2</td><td>1 2 3 4 1 3 4 4 4 4</td><td class='preformatted'>2,0000  1,0000  0,0000  1,0000  2,0000  0,0000  1,0000  1,0000  1,0000  1,0000  </td></tr>
+<tr><td>3</td><td>5 5 5 5 5</td><td class='preformatted'>0,0000  0,0000  0,0000  0,0000  0,0000  </td></tr>
+<tr><td>4</td><td></td><td class='preformatted'></td></tr>
+<tr><td>5</td><td>1 1 1 9 9 100 30</td><td class='preformatted'>20,5714  20,5714  20,5714  12,5714  12,5714  78,4286  8,4286  </td></tr>
+<tr><td>6</td><td>1000000 1 1</td><td class='preformatted'>666666,0000  333333,0000  333333,0000  </td></tr>
+</table>
+</div>
+<div id='task2936' class='task_block'>
+<div class='task_id'>2936</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит число M и данные - целые числа, разделенные пробелами. Умножить все элементы массива на M.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод Task2936.</li><li>Он принимает в качестве аргументов 1 действительное число и массив действительных чисел.</li><li>Методв возвращает массив действительных чисел.</li><li>В теле метода создайте новый массив и заполните его значениями, которые получатся в результате решения задачи.</li><li>Массив, который был передан в качестве аргумента, измениться не должен</li><li>В методе main класса Program добавьте код для проверки:</li></ol><div class='check_single preformatted'>double[] data, result;
+data = new double[]{9, 8, 7, 6, 5, 4};
+result = Library.task2936(31, data);
+System.out.println("При умножении массива");
+int i = 0;
+while (i < data.length) {
+    System.out.print(data[i] + "  ");
+    i++;
+}
+System.out.println("\nна число 31, получился массив ");
+i = 0;
+while (i < result.length) {
+    System.out.print(result[i] + "  ");
+    i++;
+}
+</div>
+<div class='task_desc'>
+В результате запуска метода main должен получиться следующий результат:
+</div>
+<div class='check_single preformatted'>При умножении массива
+9.0  8.0  7.0  6.0  5.0  4.0  
+на число 31, получился массив 
+279.0  248.0  217.0  186.0  155.0  124.0  </div>
+</div>
+<div id='task3539' class='task_block'>
+<div class='task_id'>3539</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит данные - целые числа, разделенные пробелами. Найти минимальное число и вычесть его из всех элементов массива.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод Task3539</li><li>Он принимает в качестве аргумента массив действительных чисел</li><li>В теле метода создайте новый массив и заполните его значениями, которые получатся в результате решения задачи.</li><li>Массив, который был передан в качестве аргумента, измениться не должен</li><li>В методе main класса Program добавьте код для проверки:</li></ol><div class='check_single preformatted'>double[] data = new double[]{4, 2, 3, 4, 3, 2};
+double[] result = Library.task3539(data);
+System.out.println("Исходный массив:");
+int i = 0;
+while (i < data.length) {
+    System.out.print(data[i] + " ");
+    i += 1;
+}
+System.out.println("\nРезультат обработки:");
+i = 0;
+while (i < result.length) {
+    System.out.print(result[i] + " ");
+    i += 1;
+}
+</div>
+<div class='task_desc'>
+В результате запуска метода main должен получиться следующий результат:
+</div>
+<div class='check_single preformatted'>Исходный массив:
+4.0 2.0 3.0 4.0 3.0 2.0 
+Результат обработки:
+2.0 0.0 1.0 2.0 1.0 0.0 </div>
+</div>
+<div id='task2121' class='task_block'>
+<div class='task_id'>2121</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Даны два числа: P и Q. Нужно сравнить их.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод Task2121.</li><li>Он принимает два целых числа.</li><li>Метод возвращает логическое значение.</li><li>Если P &lt;= Q, метод должен вернуть true</li><li>Если Q &lt; P, метод должен вернуть false</li><li>В методе main класса Program добавьте код для проверки:</li></ol><div class='check_single preformatted'>int p = 0, q = 7;
+boolean result = Library.Task2121(p, q);
+System.out.println(result);
+System.out.println(Library.Task2121(14, 9));
+System.out.println(Library.Task2121(5, 5));
+</div>
+<div class='task_desc'>
+В результате запуска метода main должен получиться следующий результат:
+</div>
+<div class='check_single preformatted'>true
+false
+true
+</div>
+<div class='task_desc'>
+Метод для решения задачи будет выглядеть так:
+</div>
+<div class='check_single preformatted'>public static boolean Task2121(int P, int Q) {
+    if (P <= Q) {
+        return true;
+    } else {
+        return false;
+    }
+}</div>
+<div class='check_single preformatted'>Если для ответа вам достаточно одного логического выражения, то метод можно сократить до:</div>
+<div class='check_single preformatted'>public static boolean Task2121(int P, int Q) {
+    return P <= Q;
+}</div>
+</div>
+<div id='task6401' class='task_block'>
+<div class='task_id'>6401</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+A и B обозначают границы интервала. Нужно проверить, принадлежит ли значение X указанному интервалу.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод Task6401.</li><li>Он принимает три действительных числа: A, B, X и возвращает логическое значение.</li><li>Если X принадлежит интервалу от A до B включительно, метод должен вернуть значение true.</li><li>Если X за пределами интервала от A до B включительно, метод должен вернуть значение false.</li><li>Если A < B, значит интервал от A до B. Если B < A, значит интервал от B до A.</li><li>В методе main класса Program добавьте код для проверки:</li></ol><div class='check_single preformatted'>double a = -2, b = 7;
+boolean result;
+double x = -10;
+result = Library.Task6401(a, b, x);
+if (result) {
+    System.out.println(x + " принадлежит интервалу");
+} else {
+    System.out.println(x + " за пределами интервала");
+}
+result = Library.Task6401(b, a, x);
+if (result) {
+    System.out.println(x + " принадлежит интервалу");
+} else {
+    System.out.println(x + " за пределами интервала");
+}
+x = 0;
+if (Library.Task6401(-2, 7, x)) {
+    System.out.println(x + " принадлежит интервалу");
+} else {
+    System.out.println(x + " за пределами интервала");
+}
+
+if (Library.Task6401(7, -2, x)) {
+    System.out.println(x + " принадлежит интервалу");
+} else {
+    System.out.println(x + " за пределами интервала");
+}
+System.out.println(Library.Task6401(-2, 7, 15));
+System.out.println(Library.Task6401(-2, 7, 4));
+</div>
+<div class='task_desc'>
+В результате запуска метода main должен получиться следующий результат:
+</div>
+<div class='check_single preformatted'>-10.0 за пределами интервала
+-10.0 за пределами интервала
+0.0 принадлежит интервалу
+0.0 принадлежит интервалу
+false
+true
+</div>
+</div>
+<div id='task7581' class='task_block'>
+<div class='task_id'>7581</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Определить, присутствует ли в данном массиве символ "x". Чтобы определить, что символ отсутствует, сравнивайте каждый элемент массива с эталоном "x". Если они равны, тогда возвращайте значение true. Если весь массив был просмотрен, а равных элементов не было найдено, верните false.
+</div>
+<ol start='1'><li>В классе Library реализуйте публичный статический метод Task7581.</li><li>Он принимает массив строковых значений и возвращает логическое значение.</li><li>В методе main класса Program добавьте код для проверки:</li></ol><div class='check_single preformatted'>String[] arr = "a;s;d;f".split(";");
+boolean result = Library.Task7581(arr);
+System.out.println(result);
+arr = new String[]{"z", "x", "c", "v", "x"};
+System.out.println(Library.Task7581(arr));
+result = Library.Task7581("zx;df;ty;jk".split(";"));
+System.out.println(result);
+System.out.println(
+        Library.Task7581(
+                "q;a;z;w;s;x;e;d;c".split(";")
+        )
+);
+System.out.println(Library.Task7581(new String[0]));
+</div>
+<div class='task_desc'>
+В результате запуска метода main должен получиться следующий результат:
+</div>
+<div class='check_single preformatted'>false
+true
+false
+true
+false
+</div>
+</div>
+Версия 20240202. Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2024. <a href='https://github.com/AKryukov92/programming-basics'>Основной репозиторий</a></body></html>

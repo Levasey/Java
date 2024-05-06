@@ -1,0 +1,525 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset='utf-8'/><title>2 Заполнение шаблона данными от пользователя</title><style>.check_single {
+    margin:15px;
+	border:1px solid black;
+	padding:5px;
+    width:calc(100% - 40px);
+}
+sqrt val {
+	border-top: 1px solid black;
+}
+sqrt:before {
+	content:"\221A";
+}
+.section {
+	counter-reset:section;
+}
+.section h3:after {
+	counter-increment:section;
+	content: " " counter(section);
+}
+table {
+	border-collapse:collapse;
+}
+.check_values, .check_values_v2 {
+	width:100%;
+	counter-reset:test_case;
+}
+.check_values td:first-child::before {
+	counter-increment:test_case;
+	content: counter(test_case);
+}
+table td, table th {
+	border:1px solid black;
+	text-align:center;
+}
+.check_values td:first-child, .check_values_v2 td:first-child{
+	width:40px;
+}
+.check_values td, .check_values_v2 td {
+    max-width: 450px;
+}
+.lab_nav ol {
+	list-style:none;
+}
+.nav {
+	position:fixed;
+	top:0;
+	right:0;
+	margin:15px;
+	clear:both;
+}
+.nav ul{
+	list-style-type:none;
+	padding:0;
+	float:left;
+}
+.nav li {
+	margin:2px;
+	border:1px solid black;
+}
+.nav li a {
+	display:block;
+	padding:7px;
+}
+.task_block {
+	width:80%;
+	page-break-inside:avoid;
+	padding:10px;
+	display:block;
+}
+.task_block:target{
+	background-color:lightgrey;
+}
+.task_block:target .task_id{
+	color:white;
+}
+.task_id {
+	float:right;
+	color:lightgrey;
+}
+.quiz_block {
+	width:80%;
+}
+.quiz_block:target{
+	background-color:lightgrey;
+}
+.task_desc {
+	margin:5px;
+}
+.example_image {
+	width:200px;
+}
+.lab_nav {
+	width:80%;
+	overflow:auto;
+}
+.check_values .preformatted, .preformatted {
+	font-family:monospace;
+	white-space-collapse:preserve;
+	white-space:pre;
+    text-wrap:pretty;
+	text-align:left;
+	padding:10px;
+}
+.stream_values tr td:nth-child(3) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values tr:nth-child(2) td:nth-child(2) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr td:nth-child(1){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr.test_row td:nth-child(2){
+    text-align:right;
+}
+.stream_values tr td:nth-child(2){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values .preformatted{
+    padding: 0;
+}
+.stream_values tr.test_row td {
+    border-top-width:1px;
+}
+.stream_values tr.test_row td:first-of-type {
+    border-top-width:1px;
+    border-bottom-width:1px;
+    text-align:center;
+    width:15px;
+}
+.stream_values tr:last-of-type td {
+    border-bottom-width:1px;
+}
+.stream_values {
+    width:100%;
+}
+formula {
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+}
+fraction {
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+}
+formula .abs{
+	border-left: solid black 1px;
+    border-right: solid black 1px;
+    padding: 2px;
+}
+numerator {
+	display:block;
+	border-bottom:2px solid black;
+}
+denominator {
+	display:block;
+}
+.comment{
+	color:darkgrey;
+}
+.step{
+	display:none;
+}
+.step:last-child, .step:target{
+	display:block;
+}
+.step:target ~ .step:last-child{
+	display:none;
+}
+.console{
+	background-color:black;
+	color:white;
+	width:300px;
+}
+.zoom{
+	background-color:lightgrey;
+	font-size:40pt;
+	padding:0 10px;
+}
+.task_block:target .zoom {
+    background-color:white;
+}</style><meta name="author" content="Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2019"/></head><body class='section'><a name='heading'><h1>Заполнение шаблона данными от пользователя</h1></a><div class='lab_nav'>Другие темы<ol>
+<li>1 <a href='tasks 1.html'>Печать текста на экран</a></li>
+<li>2 <a href='tasks 2.html'>Заполнение шаблона данными от пользователя</a></li>
+<li>3 <a href='tasks 3.html'>Организация вычислений</a></li>
+<li>4 <a href='tasks 4.html'>Проверка исходных данных</a></li>
+<li>5 <a href='tasks 5.html'>Запуск программы с известными исходными данными</a></li>
+<li>6 <a href='tasks 6.html'>Взаимоисключающие случаи</a></li>
+<li>7 <a href='tasks 7.html'>Работа с интервалами значений</a></li>
+<li>8 <a href='tasks 8.html'>Реорганизация повторяющихся действий</a></li>
+<li>9 <a href='tasks 9.html'>Обработка неизвестного объема данных</a></li>
+<li>10 <a href='tasks 10.html'>Вложенные циклы</a></li>
+<li>11 <a href='tasks 11.html'>Базовые операции с массивами</a></li>
+<li>12 <a href='tasks 12.html'>Перестановки элементов массива</a></li>
+<li>13 <a href='tasks 13.html'>Использование числовых массивов</a></li>
+<li>14 <a href='tasks 14.html'>Вычисление агрегатов</a></li>
+<li>15 <a href='tasks 15.html'>Поиск в массиве</a></li>
+<li>16 <a href='tasks 16.html'>Сортировка вставкой</a></li>
+<li>17 <a href='tasks 17.html'>Строки</a></li>
+<li>18 <a href='tasks 18.html'>Чтение файлов</a></li>
+<li>19 <a href='tasks 19.html'>Запись в файлы</a></li>
+<li>20 <a href='tasks 20.html'>Возврат значения</a></li>
+<li>21 <a href='tasks 21.html'>Перехват исключений</a></li>
+<li>22 <a href='tasks 22.html'>Выбрасывание исключений</a></li>
+<li>23 <a href='tasks 23.html'>Составные типы данных</a></li>
+<li>24 <a href='tasks 24.html'>Внутреннее состояние</a></li>
+<li>25 <a href='tasks 25.html'>Коллекции</a></li>
+<li>26 <a href='tasks 26.html'>Рекурсия</a></li>
+<li>27 <a href='tasks 27.html'>Даты</a></li>
+<li>28 <a href='tasks 28.html'>Комбинаторика</a></li>
+<li>29 <a href='tasks 29.html'>SQL СУБД</a></li>
+</ol></div><div class='nav'><ul><li><a href='#heading'>^</a></li><li><a href='#task1860' class='example'>1*</a><li><a href='#task4764'>2</a><li><a href='#task2429'>3</a><li><a href='#task7472'>4</a><li><a href='#task1910'>5</a><li><a href='#task7465' class='example'>6*</a><li><a href='#task4131'>7</a><li><a href='#task7365'>8</a><li><a href='#task4140' class='example'>9*</a><li><a href='#task2959'>10</a><li><a href='#task7271'>11</a><li><a href='#task2632'>12</a><li><a href='#task7474'>13</a></ul></div><div id='task1860' class='task_block'>
+<div class='task_id'>1860</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит слово (goal). Нужно напечатать на экран фразу "Мы стремимся к " и затем слово от пользователя.
+</div>
+<div class='check_single preformatted'>import java.util.Scanner;//Это нужно написать над фразой public class
+Scanner input = new Scanner(System.in);  //создать Scanner
+String goal;             //Объявить переменную для хранения текста
+goal = input.nextLine(); //Получить данные от пользователя и записать их в переменную
+System.out.println("Мы стремимся к " + goal);  //Напечатать текст на экран</div>
+<div class='task_desc'>
+Чтобы проверить эту программу, её нужно запустить несколько раз. При каждом запуске нужно вводить только одно слово из колонки Исходные данные. Задача решена правильно, если для всех исходных данных у вас получились соответствующие результаты.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (goal)</th><th>Результат</th></tr>
+<tr><td>1</td><td>знаниям</td><td class='preformatted'>Мы стремимся к знаниям
+</td></tr>
+<tr><td>2</td><td>цели</td><td class='preformatted'>Мы стремимся к цели
+</td></tr>
+<tr><td>3</td><td>результату</td><td class='preformatted'>Мы стремимся к результату
+</td></tr>
+</table>
+<div class='task_desc'>
+Одна из распространенных ошибок - не объявить переменную и дать команду на запись значения в переменную.
+</div>
+<div class='check_single preformatted'>Scanner input = new Scanner(System.in);
+//для иллюстрации команда объявления пропущена String goal;
+goal = input.nextLine();
+System.out.println("Мы стремимся к " + goal);</div>
+<div class='task_desc'>
+При попытке запустить такой код, компьютер выдаст ошибку: "cannot find symbol variable goal"
+</div>
+<div class='task_desc'>
+Другая распространенная ошибка - пропустить инициализацию переменной. То есть объявить переменную и сразу использовать её в команде печати на экран.
+</div>
+<div class='check_single preformatted'>Scanner input = new Scanner(System.in);
+String goal;
+//для иллюстрации, команда записи значения пропущена: goal = input.nextLine();
+System.out.println("Мы стремимся к " + goal);</div>
+<div class='task_desc'>
+В таком случае компьютер выдаст ошибку: "variable goal might not have been initialized"
+</div>
+</div>
+<div id='task4764' class='task_block'>
+<div class='task_id'>4764</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит слово (problem). Нужно вывести это слово на экран и дописать слова "нас не остановят" в конце.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (problem)</th><th>Результат</th></tr>
+<tr><td>1</td><td>трудности</td><td class='preformatted'>трудности нас не остановят!
+</td></tr>
+<tr><td>2</td><td>загадки</td><td class='preformatted'>загадки нас не остановят!
+</td></tr>
+<tr><td>3</td><td>сложные задачи</td><td class='preformatted'>сложные задачи нас не остановят!
+</td></tr>
+</table>
+</div>
+<div id='task2429' class='task_block'>
+<div class='task_id'>2429</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит слово (adjective). Нужно вывести его на экран, дописать слова "Программирование это " перед началом и "!"(восклицательный знак) в конце этой строки.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (adjective)</th><th>Результат</th></tr>
+<tr><td>1</td><td>просто</td><td class='preformatted'>Программирование это просто!</td></tr>
+<tr><td>2</td><td>интересно</td><td class='preformatted'>Программирование это интересно!</td></tr>
+<tr><td>3</td><td>перспективно</td><td class='preformatted'>Программирование это перспективно!</td></tr>
+</table>
+</div>
+<div id='task7472' class='task_block'>
+<div class='task_id'>7472</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит две строки(first и second). Нужно составить из них третью строку, которая должна начинаться строкой second и заканчиваться строкой first.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>first</th><th>second</th></tr>
+<tr>
+<td>1</td><td>начало</td><td>конец</td><td class='preformatted'>конец начало
+</td></tr>
+<tr>
+<td>2</td><td>сила</td><td>знание</td><td class='preformatted'>знание сила
+</td></tr>
+<tr>
+<td>3</td><td>курица</td><td>яйцо</td><td class='preformatted'>яйцо курица
+</td></tr>
+<tr>
+<td>4</td><td>шаг</td><td>шаг</td><td class='preformatted'>шаг шаг
+</td></tr>
+</table>
+</div>
+<div id='task1910' class='task_block'>
+<div class='task_id'>1910</div>
+<h3>Задача</h3>
+<h4>Переведите алгоритм с естественного языка на ваш язык программирования.</h4>
+<ol start='1'><li>Объявите переменную companyName для хранения названия компании.</li><li>Объявите переменную productName для хранения наименования товара.</li><li>Объявите переменную productCost для хранения цены на товар.</li><li>Объявите переменную messagePart для хранения фрагментов сообщения.</li></ol><div class='task_desc'>
+Получите данные от пользователя
+</div>
+<ol start='5'><li>Выведите на экран строковый литерал "Задача 1910".</li><li>Выведите на экран строковый литерал "Введите название компании".</li><li>Инициализируйте companyName - запишите в нее строку, полученную от пользователя.</li><li>Выведите на экран строковый литерал "Введите наименование товара".</li><li>Инициализируйте productName - запишите в нее строку, полученную от пользователя.</li><li>Выведите на экран строковый литерал "Введите цену товара".</li><li>Инициализируйте productCost - запишите в нее строку, полученную от пользователя.</li></ol><div class='task_desc'>
+Сформируйте ответ и выведите его на экран
+</div>
+<ol start='12'><li>Выполните конкатенацию строкового литерала "Распродажа в ", переменной companyName и строкового литерала "!".</li><li>Запишите в переменную messagePart результат конкатенации из предыдущего пункта.</li><li>Выведите на экран значение переменной messagePart.</li><li>Выполните конкатенацию строкового литерала "наши " и переменной productName.</li><li>Запишите в переменную messagePart результат конкатенации из предыдущего пункта.</li><li>Выполните конкатенацию переменной messagePart и строкового литерала " по супер цене. Всего ".</li><li>Запишите в переменную messagePart результат конкатенации из предыдущего пункта.</li><li>Запишите в переменную messagePart результат конкатенации messagePart и переменной productCost.</li><li>Запишите в переменную messagePart результат конкатенации messagePart и строкового литерала "!".</li><li>Выведите на экран с новой строки значение переменной messagePart.</li><li>Выведите на экран с новой строки значение строкового литерала "Торопитесь, предложение ограничено!".</li></ol><div class='task_desc'>
+Убедитесь, что для всех исходных данных получается ожидаемый результат.
+</div>
+<table class='stream_values'>
+<tr><th>Номер теста</th><th>Исходные данные</th><th>Результат</th></tr>
+<tr class='test_row'><td rowspan='7'>1</td><td></td><td class='preformatted'>Задача 1910
+Введите название компании
+</td></tr>
+<tr><td>Рога и копыта
+</td><td>
+</td></tr>
+<tr><td></td><td class='preformatted'>Введите наименование товара
+</td></tr>
+<tr><td>копыта
+</td><td>
+</td></tr>
+<tr><td></td><td class='preformatted'>Введите цену товара
+</td></tr>
+<tr><td>30 рублей за штуку
+</td><td>
+</td></tr>
+<tr><td></td><td class='preformatted'>Распродажа в Рога и копыта!
+Наши копыта по супер цене. Всего 30 рублей за штуку!
+Торопитесь, предложение ограничено!
+</td></tr>
+<tr class='test_row'><td rowspan='7'>2</td><td></td><td class='preformatted'>Задача 1910
+Введите название компании
+</td></tr>
+<tr><td>Слоновод
+</td><td>
+</td></tr>
+<tr><td></td><td class='preformatted'>Введите наименование товара
+</td></tr>
+<tr><td>слоны
+</td><td>
+</td></tr>
+<tr><td></td><td class='preformatted'>Введите цену товара
+</td></tr>
+<tr><td>15 попугаев
+</td><td>
+</td></tr>
+<tr><td></td><td class='preformatted'>Распродажа в Слоновод!
+Наши слоны по супер цене. Всего 15 попугаев!
+Торопитесь, предложение ограничено!
+</td></tr>
+</table>
+</div>
+<div id='task7465' class='task_block'>
+<div class='task_id'>7465</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Перенесите код в свою среду разработки:
+</div>
+<div class='check_single preformatted'>System.out.println("первая строка");
+System.out.println("вторая строка");
+System.out.println(" с продолжением");
+System.out.println("третья");
+System.out.print(" строка");
+System.out.print("четвертая");
+System.out.println(" строка");
+System.out.print(" с продолжением");
+System.out.println("пятая");
+System.out.println(" строка");
+</div>
+<div class='task_desc'>
+В java есть две команды для вывода текста:
+</div>
+<ol start='1'><li>System.out.println("текст"); //выводит текст на экран и переносит курсор на следующую строку (как будто нажали Enter). Следующий текст будет выведен строкой ниже.</li><li>System.out.print("текст"); //выводит текст на экран. Следующий текст будет выведен в продолжение этой строки.</li></ol><div class='task_desc'>
+Замените print на println так, чтобы получился следующий текст:
+</div>
+<div class='check_single preformatted'>первая строка
+вторая строка с продолжением
+третья строка
+четвертая строка с продолжением
+пятая строка
+</div>
+</div>
+<div id='task4131' class='task_block'>
+<div class='task_id'>4131</div>
+<h3>Задача</h3>
+<h4>Переведите алгоритм с естественного языка на ваш язык программирования.</h4>
+<ol start='1'><li>Объявите переменную clientName для хранения имени клиента.</li><li>Объявите переменную companyName для хранения названия компании.</li></ol><div class='task_desc'>
+Инициализируйте переменные
+</div>
+<ol start='3'><li>Запишите в переменную clientName строковый литерал "Иван Иванович".</li><li>Запишите в переменную companyName строковый литерал "ООО Рога и копыта".</li></ol><div class='task_desc'>
+Оформите ответ
+</div>
+<ol start='5'><li>Выведите на экран строковый литерал "Задача 4131".</li><li>Выведите на экран на новой строке строковый литерал "Уважаемый ".</li><li>Выведите на экран значение переменной clientName. Продолжите предыдущую строку.</li><li>Выведите на экран строковый литерал ". Поздравляем с Днем рождения.". Продолжите предыдущую строку.</li><li>Выведите на экран на новой строке строковый литерал: "Пусть каждый день будет наполнен счастьем! \nВаша ".</li><li>Выведите на экран значение переменной companyName. Продолжите предыщущую строку.</li><li>Выведите на экран строковый литерал ".".</li></ol><div class='task_desc'>
+Запустите программу и проверьте, что у вас получился такой же результат:
+</div>
+<div class='check_single preformatted'>Задача 4131
+Уважаемый Иван Иванович. Поздравляем с Днем рождения.
+Пусть каждый день будет наполнен счастьем!
+Ваша ООО Рога и копыта.</div>
+</div>
+<div id='task7365' class='task_block'>
+<div class='task_id'>7365</div>
+<h3>Задача</h3>
+<h4>Переведите алгоритм с естественного языка на ваш язык программирования.</h4>
+<ol start='1'><li>Объявите переменную accountBalance для хранения баланса счета.</li><li>Объявите переменную messageText для хранения текста сообщения.</li><li>Инициализируйте переменную accountBalance - запишите в нее строковый литерал "0,37".</li><li>Выведите на экран строковый литерал "Задача 7365".</li><li>Запишите в переменную messageText строковый литерал "Пора пополнить счет!\n".</li><li>Запишите в переменную messageText результат конкатенации значения переменной messageText и строкового литерала "Баланс Вашего счета составляет ".</li><li>Запишите в переменную messageText результат конкатенации значений переменных messageText и accountBalance.</li><li>Запишите в переменную messageText результат конкатенации значения переменной messageText и строкового литерала " руб.".</li><li>Выведите на экран значение переменной messageText.</li></ol><div class='task_desc'>
+Запустите программу и проверьте, что у вас получился такой же результат
+</div>
+<div class='check_single preformatted'>Задача 7365
+Пора пополнить счет!
+Баланс Вашего счета составляет 0,37 руб.</div>
+</div>
+<div id='task4140' class='task_block'>
+<div class='task_id'>4140</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит фамилию и имя. Нужно оформить фразу по шаблону:
+</div>
+<div class='check_single preformatted'>Меня зовут $lastName, $firstName $lastName.</div>
+<div class='task_desc'>
+Выражения вида $lastName это условное обозначение для вас. Вместо этого выражения нужно написать значение переменной lastName. В Java это можно сделать с помощью команды System.out.printf(). В скобочках нужно написать:
+</div>
+<ol start='1'><li>Шаблон текста со специальными символами %s в тех местах, где нужно написать переменную.</li><li>Переменные через запятую. В том порядке, как они должны быть написаны в сообщении.</li></ol><div class='task_desc'>
+Команда для решения этой задачи выглядит так
+</div>
+<div class='check_single preformatted'>System.out.printf("Меня зовут %s, %s %s", lastName, firstName, lastName);</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>first name</th><th>last name</th></tr>
+<tr>
+<td>1</td><td>Джеймс</td><td>Бонд</td><td class='preformatted'>Меня зовут Бонд, Джеймс Бонд</td></tr>
+<tr>
+<td>2</td><td>капитан</td><td>Джек Воробей</td><td class='preformatted'>Меня зовут Джек Воробей, капитан Джек Воробей</td></tr>
+<tr>
+<td>3</td><td>Александр</td><td>Крюков</td><td class='preformatted'>Меня зовут Крюков, Александр Крюков</td></tr>
+</table>
+</div>
+<div id='task2959' class='task_block'>
+<div class='task_id'>2959</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит несколько значений. Вывести данный фрагмент текста, заменив названия переменных их значениями. $ID на введенное значение id.
+</div>
+<div class='check_single preformatted'>SELECT first_name, last_name, group
+FROM students WHERE student_id = '$ID';</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (id)</th><th>Результат</th></tr>
+<tr><td>1</td><td>123456789</td><td class='preformatted'>SELECT first_name, last_name, group
+FROM students WHERE student_id = '123456789';</td></tr>
+<tr><td>2</td><td>fa93f</td><td class='preformatted'>SELECT first_name, last_name, group
+FROM students WHERE student_id = 'fa93f';</td></tr>
+</table>
+</div>
+<div id='task7271' class='task_block'>
+<div class='task_id'>7271</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит несколько значений. Вывести данный фрагмент текста, заменив названия переменных их значениями. $X на введенное значение x. $Y на введенное значение y.
+</div>
+<div class='check_single preformatted'>INSERT INTO points (x, y) VALUES ('$X', '$Y');</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>x</th><th>y</th></tr>
+<tr>
+<td>1</td><td>5</td><td>7</td><td class='preformatted'>INSERT INTO points (x, y) VALUES ('5', '7');</td></tr>
+<tr>
+<td>2</td><td>-1</td><td>1000</td><td class='preformatted'>INSERT INTO points (x, y) VALUES ('-1', '1000');</td></tr>
+</table>
+</div>
+<div id='task2632' class='task_block'>
+<div class='task_id'>2632</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит несколько значений. Вывести данный фрагмент текста, заменив названия переменных их значениями.
+</div>
+<div class='check_single preformatted'>&lt;circle cx="$CX" cy="$CY" r="$R" fill="$FILL"/&gt;</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='4'>Исходные данные</th><th rowspan='2'>Результат</th></tr>
+<tr><th>cx</th><th>cy</th><th>r</th><th>fill</th></tr>
+<tr><td>1</td><td>50</td><td>50</td><td>40</td><td>yellow</td><td class='preformatted'>&lt;circle cx="50" cy="50" r="40" fill="yellow"/&gt;</td></tr>
+<tr><td>2</td><td>400</td><td>300</td><td>200</td><td>green</td><td class='preformatted'>&lt;circle cx="400" cy="300" r="200" fill="green"/&gt;</td></tr>
+<tr><td>3</td><td>254</td><td>356</td><td>100</td><td>#cc6600</td><td class='preformatted'>&lt;circle cx="254" cy="356" r="100" fill="#cc6600"/&gt;</td></tr>
+</table>
+</div>
+<div id='task7474' class='task_block'>
+<div class='task_id'>7474</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит несколько значений. Вывести данный фрагмент текста, заменив названия переменных их значениями. $A, $B, $C на введенные значения a, b, c соответственно.
+</div>
+<div class='check_single preformatted'>Квадратное уравнение $A*x*x + $B*x + $C = 0.
+Его дискриминант вычисляется по формуле: d = $B*$B - 4*$A*$C</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='3'>Исходные данные</th><th rowspan='2'>Результат</th></tr>
+<tr><th>a</th><th>b</th><th>c</th></tr>
+<tr>
+<td>1</td><td>1</td><td>2</td><td>3</td><td class='preformatted'>Квадратное уравнение 1*x*x + 2*x + 3 = 0.
+Его дискриминант вычисляется по формуле: d = 2*2 - 4*1*3</td></tr>
+<tr>
+<td>2</td><td>-3</td><td>0</td><td>2</td><td class='preformatted'>Квадратное уравнение -3*x*x + 0*x + 2 = 0.
+Его дискриминант вычисляется по формуле: d = 0*0 - 4*-3*2</td></tr>
+</table>
+</div>
+Версия 20240202. Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2024. <a href='https://github.com/AKryukov92/programming-basics'>Основной репозиторий</a></body></html>

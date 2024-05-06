@@ -1,0 +1,632 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset='utf-8'/><title>1 Печать текста на экран</title><style>.check_single {
+    margin:15px;
+	border:1px solid black;
+	padding:5px;
+    width:calc(100% - 40px);
+}
+sqrt val {
+	border-top: 1px solid black;
+}
+sqrt:before {
+	content:"\221A";
+}
+.section {
+	counter-reset:section;
+}
+.section h3:after {
+	counter-increment:section;
+	content: " " counter(section);
+}
+table {
+	border-collapse:collapse;
+}
+.check_values, .check_values_v2 {
+	width:100%;
+	counter-reset:test_case;
+}
+.check_values td:first-child::before {
+	counter-increment:test_case;
+	content: counter(test_case);
+}
+table td, table th {
+	border:1px solid black;
+	text-align:center;
+}
+.check_values td:first-child, .check_values_v2 td:first-child{
+	width:40px;
+}
+.check_values td, .check_values_v2 td {
+    max-width: 450px;
+}
+.lab_nav ol {
+	list-style:none;
+}
+.nav {
+	position:fixed;
+	top:0;
+	right:0;
+	margin:15px;
+	clear:both;
+}
+.nav ul{
+	list-style-type:none;
+	padding:0;
+	float:left;
+}
+.nav li {
+	margin:2px;
+	border:1px solid black;
+}
+.nav li a {
+	display:block;
+	padding:7px;
+}
+.task_block {
+	width:80%;
+	page-break-inside:avoid;
+	padding:10px;
+	display:block;
+}
+.task_block:target{
+	background-color:lightgrey;
+}
+.task_block:target .task_id{
+	color:white;
+}
+.task_id {
+	float:right;
+	color:lightgrey;
+}
+.quiz_block {
+	width:80%;
+}
+.quiz_block:target{
+	background-color:lightgrey;
+}
+.task_desc {
+	margin:5px;
+}
+.example_image {
+	width:200px;
+}
+.lab_nav {
+	width:80%;
+	overflow:auto;
+}
+.check_values .preformatted, .preformatted {
+	font-family:monospace;
+	white-space-collapse:preserve;
+	white-space:pre;
+    text-wrap:pretty;
+	text-align:left;
+	padding:10px;
+}
+.stream_values tr td:nth-child(3) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values tr:nth-child(2) td:nth-child(2) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr td:nth-child(1){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr.test_row td:nth-child(2){
+    text-align:right;
+}
+.stream_values tr td:nth-child(2){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values .preformatted{
+    padding: 0;
+}
+.stream_values tr.test_row td {
+    border-top-width:1px;
+}
+.stream_values tr.test_row td:first-of-type {
+    border-top-width:1px;
+    border-bottom-width:1px;
+    text-align:center;
+    width:15px;
+}
+.stream_values tr:last-of-type td {
+    border-bottom-width:1px;
+}
+.stream_values {
+    width:100%;
+}
+formula {
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+}
+fraction {
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+}
+formula .abs{
+	border-left: solid black 1px;
+    border-right: solid black 1px;
+    padding: 2px;
+}
+numerator {
+	display:block;
+	border-bottom:2px solid black;
+}
+denominator {
+	display:block;
+}
+.comment{
+	color:darkgrey;
+}
+.step{
+	display:none;
+}
+.step:last-child, .step:target{
+	display:block;
+}
+.step:target ~ .step:last-child{
+	display:none;
+}
+.console{
+	background-color:black;
+	color:white;
+	width:300px;
+}
+.zoom{
+	background-color:lightgrey;
+	font-size:40pt;
+	padding:0 10px;
+}
+.task_block:target .zoom {
+    background-color:white;
+}</style><meta name="author" content="Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2019"/></head><body class='section'><a name='heading'><h1>Печать текста на экран</h1></a><div class='lab_nav'>Другие темы<ol>
+<li>1 <a href='tasks 1.html'>Печать текста на экран</a></li>
+<li>2 <a href='tasks 2.html'>Заполнение шаблона данными от пользователя</a></li>
+<li>3 <a href='tasks 3.html'>Организация вычислений</a></li>
+<li>4 <a href='tasks 4.html'>Проверка исходных данных</a></li>
+<li>5 <a href='tasks 5.html'>Запуск программы с известными исходными данными</a></li>
+<li>6 <a href='tasks 6.html'>Взаимоисключающие случаи</a></li>
+<li>7 <a href='tasks 7.html'>Работа с интервалами значений</a></li>
+<li>8 <a href='tasks 8.html'>Реорганизация повторяющихся действий</a></li>
+<li>9 <a href='tasks 9.html'>Обработка неизвестного объема данных</a></li>
+<li>10 <a href='tasks 10.html'>Вложенные циклы</a></li>
+<li>11 <a href='tasks 11.html'>Базовые операции с массивами</a></li>
+<li>12 <a href='tasks 12.html'>Перестановки элементов массива</a></li>
+<li>13 <a href='tasks 13.html'>Использование числовых массивов</a></li>
+<li>14 <a href='tasks 14.html'>Вычисление агрегатов</a></li>
+<li>15 <a href='tasks 15.html'>Поиск в массиве</a></li>
+<li>16 <a href='tasks 16.html'>Сортировка вставкой</a></li>
+<li>17 <a href='tasks 17.html'>Строки</a></li>
+<li>18 <a href='tasks 18.html'>Чтение файлов</a></li>
+<li>19 <a href='tasks 19.html'>Запись в файлы</a></li>
+<li>20 <a href='tasks 20.html'>Возврат значения</a></li>
+<li>21 <a href='tasks 21.html'>Перехват исключений</a></li>
+<li>22 <a href='tasks 22.html'>Выбрасывание исключений</a></li>
+<li>23 <a href='tasks 23.html'>Составные типы данных</a></li>
+<li>24 <a href='tasks 24.html'>Внутреннее состояние</a></li>
+<li>25 <a href='tasks 25.html'>Коллекции</a></li>
+<li>26 <a href='tasks 26.html'>Рекурсия</a></li>
+<li>27 <a href='tasks 27.html'>Даты</a></li>
+<li>28 <a href='tasks 28.html'>Комбинаторика</a></li>
+<li>29 <a href='tasks 29.html'>SQL СУБД</a></li>
+</ol></div><div class='nav'><ul><li><a href='#heading'>^</a></li><li><a href='#task1662' class='example'>1*</a><li><a href='#task5321'>2</a><li><a href='#task8691'>3</a><li><a href='#task7920'>4</a><li><a href='#task7339' class='example'>5*</a><li><a href='#task5901'>6</a><li><a href='#task3240'>7</a><li><a href='#task7058'>8</a><li><a href='#task5792'>9</a><li><a href='#task9523'>10</a><li><a href='#task6986'>11</a></ul><ul><li><a href='#task3246' class='example'>12*</a><li><a href='#task7332'>13</a><li><a href='#task9781'>14</a><li><a href='#task6814'>15</a><li><a href='#task1640' class='example'>16*</a><li><a href='#task8693'>17</a></ul></div><div id='task1662' class='task_block'>
+<div class='task_id'>1662</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Строковый литерал. <a href='https://learn.microsoft.com/ru-ru/cpp/c-language/c-string-literals?view=msvc-170'>Строковые литералы в C</a>. Это последовательность символов, которая начинается с двойной кавычки и заканчивается двойной кавычкой. Используется для оформления текста при печати на экран или других манипуляциях.
+</div>
+<div class='task_desc'>
+Чтобы напечатать строковый литерал содержащий фразу "Ура, заработало" в консоль, используйте команду:
+</div>
+<div class='check_single preformatted'>System.out.println("Ура! заработало");</div>
+<div class='task_desc'>
+Выведите на экран текст
+</div>
+<div class='check_single preformatted'>Ура! заработало!
+Вторая строка, вторая команда
+Выделенный текст можно копировать сочетанием клавиш Ctrl+C
+Скопированный текст можно вставить в код сочетанием клавиш Ctrl+V</div>
+<div class='task_desc'>
+Если не поставить кавычку в конце строкового литерала, то компьютер не сможет понять когда он заканчивается. Поэтому при попытке запуска компьютер выдаст три ошибки компиляции:
+</div>
+<div class='check_single preformatted'>System.out.println("Ура! Заработало!);</div>
+<ol start='1'><li>unclosed string literal</li><li>';' expected</li><li>reached end of file while parsing</li></ol></div>
+<div id='task5321' class='task_block'>
+<div class='task_id'>5321</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст
+</div>
+<div class='check_single preformatted'>+---+
+|   |
+|   |
++---+</div>
+<div class='task_desc'>
+Шпаргалка по расположению символов на клавиатуре
+</div>
+<div class='task_desc'>
+
+<table>
+    <tr>
+        <th>Символ</th>
+        <th>на русской раскладке</th>
+        <th>на английской раскладке</th>
+    </tr>
+    <tr>
+        <td><span class='zoom'>|</span></td>
+        <td>отсутствует</td>
+        <td>Вводить c шифтом. Ищите символы
+        <span class='zoom'>\</span>
+        <span class='zoom'>/</span>
+        <span class='zoom'>|</span> справа, возле Enter. Клавиша может быть на любом ряду.</td>
+    </tr>
+    <tr>
+        <td><span class='zoom'>.</span></td>
+        <td>Вводить без шифта. Ищите символы 
+        <span class='zoom'>?</span>
+        <span class='zoom'>,</span>
+        <span class='zoom'>/</span>
+        <span class='zoom'>.</span> справа снизу</td>
+        <td>Вводить без шифта. Ищите символы
+        <span class='zoom'>&gt;</span>
+        <span class='zoom'>.</span>
+        <span class='zoom'>ю</span> справа снизу</td>
+    </tr>
+    <tr>
+        <td><span class='zoom'>(</span></td>
+        <td colspan="2">Вводить c шифтом. Ищите символы 
+        <span class='zoom'>(</span>
+        <span class='zoom'>9</span> справа сверху</td>
+    </tr>
+    <tr>
+        <td><span class='zoom'>)</span></td>
+        <td colspan="2">Вводить c шифтом. Ищите символы 
+        <span class='zoom'>)</span>
+        <span class='zoom'>0</span> справа сверху</td>
+    </tr>
+    <tr>
+        <td><span class='zoom'>"</span></td>
+        <td>Вводить c шифтом. Ищите символы
+        <span class='zoom'>@</span>
+        <span class='zoom'>"</span>
+        <span class='zoom'>2</span> слева сверху</td>
+        <td>Вводить c шифтом. Ищите символы
+        <span class='zoom'>"</span>
+        <span class='zoom'>'</span>
+        <span class='zoom'>э</span> справа посередине</td>
+    </tr>
+    <tr>
+        <td><span class='zoom'>;</span></td>
+        <td>Вводить c шифтом. Ищите символы
+        <span class='zoom'>$</span>
+        <span class='zoom'>;</span>
+        <span class='zoom'>4</span> слева сверху</td>
+        <td>Вводить c шифтом. Ищите символы
+        <span class='zoom'>:</span>
+        <span class='zoom'>;</span>
+        <span class='zoom'>ж</span> справа посередине</td>
+    </tr>
+</table>
+</div>
+</div>
+<div id='task8691' class='task_block'>
+<div class='task_id'>8691</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст.
+</div>
+<div class='check_single preformatted'>{ "x":15, "y": 28.7 }</div>
+<div class='task_desc'>
+Компьютер определяет начало и конец сообщения по двойным кавычкам <span class='zoom'>&quot;</span>. Из за того, что кавычки одинаковы, любая первая будет значить начало литерала, а следующая - конец литерала. Если будет третья - она будет значить начало нового строкового литерала. Поэтому для вывода на экран одного символа " нужно написать комбинацию символов <span class='zoom'>\"</span>. Это один из спецсимволов.
+</div>
+<div class='task_desc'>
+Спецсимволы - комбинации символов, которые начинаются с обратного слеша и обозначают какой-то особенный символ.
+</div>
+<div class='task_desc'>
+Если вы не написали комбинацию символов \" там где нужно напечатать кавычку, то ошибки будут такими:
+</div>
+<div class='check_single preformatted'>System.out.println("{ "x":15, "y": 28.7 }");</div>
+<ol start='1'><li>')' expected</li><li>not a statement</li><li>';' expected</li></ol><div class='task_desc'>
+Нужно оформить по аналогии:
+</div>
+<div class='check_single preformatted'>System.out.println("одинокая кавычка \" на экране");</div>
+</div>
+<div id='task7920' class='task_block'>
+<div class='task_id'>7920</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст одной командой печати. Для переноса строки используйте спецсимвол <span class='zoom'>\n</span>
+</div>
+<div class='check_single preformatted'>  *
+  *
+*****
+  *
+  *</div>
+<div class='task_desc'>
+Если вы напишете такую команду:
+</div>
+<div class='check_single preformatted'>System.out.println("первая\nвторая");</div>
+<div class='task_desc'>
+то на экране появится
+</div>
+<div class='check_single preformatted'>первая
+вторая</div>
+</div>
+<div id='task7339' class='task_block'>
+<div class='task_id'>7339</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Конкатенация. <a href='https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BD%D0%BA%D0%B0%D1%82%D0%B5%D0%BD%D0%B0%D1%86%D0%B8%D1%8F#%D0%92_%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B5'>из Википедии</a> Конкатена́ция (лат. concatenatio «присоединение цепями; сцепле́ние») — операция склеивания объектов линейной структуры, обычно строк. Например, конкатенация слов «микро» и «мир» даст слово «микромир». Это нужно для формирования больших фрагментов текста из множества маленьких. Чтобы конкатенировать литералы "микро" и "мир", напишите в исходном коде между ними знак +
+</div>
+<div class='check_single preformatted'>System.out.println("микро" + "мир")</div>
+<div class='task_desc'>
+В результате получится:
+</div>
+<div class='check_single preformatted'>микромир</div>
+<div class='task_desc'>
+Напишите еще несколько слов с применением конкатенации:
+</div>
+<div class='check_single preformatted'>синезеленый
+высокоскоростной
+отказоустойчивый
+ау</div>
+</div>
+<div id='task5901' class='task_block'>
+<div class='task_id'>5901</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст с помощью одной команды печати. Напишите каждую строчку отдельным строковым литералом. Объедините их с помощью конкатенации. Каждый строковый литерал расположите на новой строке исходного кода.
+</div>
+<div class='check_single preformatted'>System.out.println("Три девицы под окном\n" +
+  "Пряли поздно вечерком.\n");</div>
+<div class='check_single preformatted'>Три девицы под окном
+Пряли поздно вечерком.
+"Кабы я была царица, —
+Говорит одна девица, —
+То на весь крещеный мир
+Приготовила б я пир".
+"Кабы я была царица, —
+Говорит ее сестрица, —
+То на весь бы мир одна
+Наткала я полотна".
+"Кабы я была царица, —
+Третья молвила сестрица, —
+Я б для батюшки-царя
+Родила богатыря".</div>
+</div>
+<div id='task3240' class='task_block'>
+<div class='task_id'>3240</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст. Для вывода каждого символа <span class='zoom'>\</span> вам нужно написать спецсимвол <span class='zoom'>\\</span> то есть символ <span class='zoom'>\</span> дважды. Для того, чтобы напечатать на экран три символа <span class='zoom'>\</span>, нужно было бы написать шесть символов \ в коде.
+</div>
+<div class='check_single preformatted'> /\
+//\\
+//\\
+ ][</div>
+</div>
+<div id='task7058' class='task_block'>
+<div class='task_id'>7058</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст
+</div>
+<div class='check_single preformatted'> //
+<--<
+ \\</div>
+</div>
+<div id='task5792' class='task_block'>
+<div class='task_id'>5792</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст
+</div>
+<div class='check_single preformatted'>&lt;h1&gt;Мой первый векторный рисунок&lt;/h1&gt;
+
+&lt;svg width="800" height="600"&gt;
+    &lt;circle cx="50" cy="50" r="40" stroke="green"
+        stroke-width="4" fill="yellow"/&gt;
+&lt;/svg&gt;</div>
+</div>
+<div id='task9523' class='task_block'>
+<div class='task_id'>9523</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст. Найдите в Интернете код символа градуса в кодировке Unicode  перед буквой C. Код должен быть в шестнадцатеричной системе счисления. Напишите спецсимвол, который начинается с \u и после него укажите код символа градуса. Например спецсимвол для знака <span class='zoom'>¥</span> (йена) выглядит как <span class='zoom'>\u00A5</span>
+</div>
+<div class='check_single preformatted'>Температура воздуха: 25°C</div>
+</div>
+<div id='task6986' class='task_block'>
+<div class='task_id'>6986</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст
+</div>
+<div class='check_single preformatted'>Длина волны (λ) вычисляется по формуле: λ=2πν/ω, где:
+π - (пи) математическая константа
+ν - (ню) фазовая скорость
+ω - (омега) угловая частота</div>
+</div>
+<div id='task3246' class='task_block'>
+<div class='task_id'>3246</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Переставьте команды так, чтобы при запуске на экран было выведено слово "успех". Все команды должны быть использованы. Дописывать новые команды и дублировать существующие - нельзя.
+</div>
+<div class='check_single preformatted'>System.out.println("Задача 3246");
+String a, b, c; //Объявляю переменные a, b, c для хранения текста
+c = "успех";  //Записываю в переменную c значение "успех"
+b = "провал"; //Записываю в переменную b значение "провал"
+c = b;          //Читаю из b, записываю в c
+a = b;          //Читаю из b, записываю в a
+b = c;          //Читаю из c, записываю в b
+System.out.println(a);//Печать результата на экран</div>
+<div class='task_desc'>
+Код, написанный справа от символов <span class='zoom'>//</span> это комментарии. Они не исполняются компьютером и могут содержать любой текст.
+</div>
+</div>
+<div id='task7332' class='task_block'>
+<div class='task_id'>7332</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Переставьте команды так, чтобы при запуске на экран было выведено слово "успех". Все команды должны быть использованы. Дописывать новые команды и дублировать существующие - нельзя.
+</div>
+<div class='check_single preformatted'>System.out.println("Задача 7332");
+String a, b, c;
+c = "успех";
+b = "тоже провал";
+a = "провал";
+c = b;
+b = c;
+b = a;
+a = b;
+System.out.println(a);</div>
+</div>
+<div id='task9781' class='task_block'>
+<div class='task_id'>9781</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Переставьте команды так, чтобы при запуске на экран было выведено слово "успех". Все команды должны быть использованы. Дописывать новые команды и дублировать существующие - нельзя.
+</div>
+<div class='check_single preformatted'>System.out.println("Задача 9781");
+String a, b, c, d;
+c = "успех";
+a = "тоже провал";
+b = "провал";
+c = b;
+d = b;
+b = d;
+d = c;
+a = b;
+System.out.println(a);</div>
+</div>
+<div id='task6814' class='task_block'>
+<div class='task_id'>6814</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Переставьте команды так, чтобы при запуске на экран было выведено слово "успех". Все команды должны быть использованы. Дописывать новые команды и дублировать существующие - нельзя.
+</div>
+<div class='check_single preformatted'>System.out.println("Задача 6814");
+String a, b, c, d;
+c = "успех";
+a = "тоже провал";
+b = "провал";
+d = b;
+b = c;
+b = d;
+d = c;
+a = d;
+a = b;
+System.out.println(a);</div>
+</div>
+<div id='task1640' class='task_block'>
+<div class='task_id'>1640</div>
+<h3>Задача</h3>
+<h4>Переведите алгоритм с естественного языка на ваш язык программирования.</h4>
+<ol start='1'><li>Выведите на экран значение строкового литерала "Задача 1640"</li><li>Объявите переменную undersong для хранения повторяющейся строки.</li><li>Инициализируйте переменную undersong - запишите в нее строковый литерал "Йо-хо-хо, и бутылка рому!".</li><li>Выведите на экран результат конкатенации строкового литерала "Пятнадцать человек на сундук мертвеца." и переменной undersong.</li><li>Выведите на экран результат конкатенации строкового литерала "Пей, и дьявол тебя доведет до конца." и переменной undersong.</li></ol><div class='task_desc'>
+ Объявление переменной это команда из двух слов, после которых нужно поставить символ <span class='zoom'>;</span>.
+</div>
+<div class='check_single preformatted'>String undersong;</div>
+<ol start='6'><li>Первое слово - тип переменной. Поначалу это будет String. В следующих практических вы познакомитесь с другими типами переменных и даже сможете создавать свои собственные типы.</li><li>Второе слово - имя переменной. Вы можете самостоятельно придумывать имя переменной.</li></ol><div class='task_desc'>
+Правила именования переменных:
+</div>
+<ol start='8'><li>Может состоять из русских и латинских букв, цифр, знака подчеркивания "_"</li><li>Может начинаться с буквы или знака подчеркивания. С цифры начинаться не может.</li><li>Не может содержать знаки математических операций: + - = / * % и прочих</li><li>Название должно отражать назначение переменной</li></ol><h4>Запустите программу и проверьте, что у вас получился такой же результат</h4>
+<div class='check_single preformatted'>Задача 1640
+Пятнадцать человек на сундук мертвеца.
+Йо-хо-хо, и бутылка рому!
+Пей, и дьявол тебя доведет до конца.
+Йо-хо-хо, и бутылка рому!
+</div>
+</div>
+<div id='task8693' class='task_block'>
+<div class='task_id'>8693</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Выведите на экран текст наименьшим количеством строк кода. Примените конкатенацию строк и команду записи значения в переменную (присвоение ей значения). Обратите внимание на строку "Лягнувшая старого пса без хвоста".
+</div>
+<div class='check_single preformatted'>Самуил Маршак. Дом, который построил Джек.
+
+Вот дом,
+Который построил Джек.
+
+А это пшеница,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+А это весёлая птица-синица,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+Вот кот,
+Который пугает и ловит синицу,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+Вот пёс без хвоста,
+Который за шиворот треплет кота,
+Который пугает и ловит синицу,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+А это корова безрогая,
+Лягнувшая старого пса без хвоста,
+Который за шиворот треплет кота,
+Который пугает и ловит синицу,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+А это старушка, седая и строгая,
+Которая доит корову безрогую,
+Лягнувшую старого пса без хвоста,
+Который за шиворот треплет кота,
+Который пугает и ловит синицу,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+А это ленивый и толстый пастух,
+Который бранится с коровницей строгою,
+Которая доит корову безрогую,
+Лягнувшую старого пса без хвоста,
+Который за шиворот треплет кота,
+Который пугает и ловит синицу,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+Вот два петуха,
+Которые будят того пастуха,
+Который бранится с коровницей строгою,
+Которая доит корову безрогую,
+Лягнувшую старого пса без хвоста,
+Который за шиворот треплет кота,
+Который пугает и ловит синицу,
+Которая часто ворует пшеницу,
+Которая в тёмном чулане хранится
+В доме,
+Который построил Джек.
+
+</div>
+</div>
+Версия 20240202. Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2024. <a href='https://github.com/AKryukov92/programming-basics'>Основной репозиторий</a></body></html>

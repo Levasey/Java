@@ -1,0 +1,789 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset='utf-8'/><title>13 Использование числовых массивов</title><style>.check_single {
+    margin:15px;
+	border:1px solid black;
+	padding:5px;
+    width:calc(100% - 40px);
+}
+sqrt val {
+	border-top: 1px solid black;
+}
+sqrt:before {
+	content:"\221A";
+}
+.section {
+	counter-reset:section;
+}
+.section h3:after {
+	counter-increment:section;
+	content: " " counter(section);
+}
+table {
+	border-collapse:collapse;
+}
+.check_values, .check_values_v2 {
+	width:100%;
+	counter-reset:test_case;
+}
+.check_values td:first-child::before {
+	counter-increment:test_case;
+	content: counter(test_case);
+}
+table td, table th {
+	border:1px solid black;
+	text-align:center;
+}
+.check_values td:first-child, .check_values_v2 td:first-child{
+	width:40px;
+}
+.check_values td, .check_values_v2 td {
+    max-width: 450px;
+}
+.lab_nav ol {
+	list-style:none;
+}
+.nav {
+	position:fixed;
+	top:0;
+	right:0;
+	margin:15px;
+	clear:both;
+}
+.nav ul{
+	list-style-type:none;
+	padding:0;
+	float:left;
+}
+.nav li {
+	margin:2px;
+	border:1px solid black;
+}
+.nav li a {
+	display:block;
+	padding:7px;
+}
+.task_block {
+	width:80%;
+	page-break-inside:avoid;
+	padding:10px;
+	display:block;
+}
+.task_block:target{
+	background-color:lightgrey;
+}
+.task_block:target .task_id{
+	color:white;
+}
+.task_id {
+	float:right;
+	color:lightgrey;
+}
+.quiz_block {
+	width:80%;
+}
+.quiz_block:target{
+	background-color:lightgrey;
+}
+.task_desc {
+	margin:5px;
+}
+.example_image {
+	width:200px;
+}
+.lab_nav {
+	width:80%;
+	overflow:auto;
+}
+.check_values .preformatted, .preformatted {
+	font-family:monospace;
+	white-space-collapse:preserve;
+	white-space:pre;
+    text-wrap:pretty;
+	text-align:left;
+	padding:10px;
+}
+.stream_values tr td:nth-child(3) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values tr:nth-child(2) td:nth-child(2) {
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr td:nth-child(1){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:right;
+}
+.stream_values tr.test_row td:nth-child(2){
+    text-align:right;
+}
+.stream_values tr td:nth-child(2){
+    border-top-width:0;
+    border-bottom-width:0;
+    text-align:left;
+}
+.stream_values .preformatted{
+    padding: 0;
+}
+.stream_values tr.test_row td {
+    border-top-width:1px;
+}
+.stream_values tr.test_row td:first-of-type {
+    border-top-width:1px;
+    border-bottom-width:1px;
+    text-align:center;
+    width:15px;
+}
+.stream_values tr:last-of-type td {
+    border-bottom-width:1px;
+}
+.stream_values {
+    width:100%;
+}
+formula {
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+}
+fraction {
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+}
+formula .abs{
+	border-left: solid black 1px;
+    border-right: solid black 1px;
+    padding: 2px;
+}
+numerator {
+	display:block;
+	border-bottom:2px solid black;
+}
+denominator {
+	display:block;
+}
+.comment{
+	color:darkgrey;
+}
+.step{
+	display:none;
+}
+.step:last-child, .step:target{
+	display:block;
+}
+.step:target ~ .step:last-child{
+	display:none;
+}
+.console{
+	background-color:black;
+	color:white;
+	width:300px;
+}
+.zoom{
+	background-color:lightgrey;
+	font-size:40pt;
+	padding:0 10px;
+}
+.task_block:target .zoom {
+    background-color:white;
+}</style><meta name="author" content="Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2019"/></head><body class='section'><a name='heading'><h1>Использование числовых массивов</h1></a><div class='lab_nav'>Другие темы<ol>
+<li>1 <a href='tasks 1.html'>Печать текста на экран</a></li>
+<li>2 <a href='tasks 2.html'>Заполнение шаблона данными от пользователя</a></li>
+<li>3 <a href='tasks 3.html'>Организация вычислений</a></li>
+<li>4 <a href='tasks 4.html'>Проверка исходных данных</a></li>
+<li>5 <a href='tasks 5.html'>Запуск программы с известными исходными данными</a></li>
+<li>6 <a href='tasks 6.html'>Взаимоисключающие случаи</a></li>
+<li>7 <a href='tasks 7.html'>Работа с интервалами значений</a></li>
+<li>8 <a href='tasks 8.html'>Реорганизация повторяющихся действий</a></li>
+<li>9 <a href='tasks 9.html'>Обработка неизвестного объема данных</a></li>
+<li>10 <a href='tasks 10.html'>Вложенные циклы</a></li>
+<li>11 <a href='tasks 11.html'>Базовые операции с массивами</a></li>
+<li>12 <a href='tasks 12.html'>Перестановки элементов массива</a></li>
+<li>13 <a href='tasks 13.html'>Использование числовых массивов</a></li>
+<li>14 <a href='tasks 14.html'>Вычисление агрегатов</a></li>
+<li>15 <a href='tasks 15.html'>Поиск в массиве</a></li>
+<li>16 <a href='tasks 16.html'>Сортировка вставкой</a></li>
+<li>17 <a href='tasks 17.html'>Строки</a></li>
+<li>18 <a href='tasks 18.html'>Чтение файлов</a></li>
+<li>19 <a href='tasks 19.html'>Запись в файлы</a></li>
+<li>20 <a href='tasks 20.html'>Возврат значения</a></li>
+<li>21 <a href='tasks 21.html'>Перехват исключений</a></li>
+<li>22 <a href='tasks 22.html'>Выбрасывание исключений</a></li>
+<li>23 <a href='tasks 23.html'>Составные типы данных</a></li>
+<li>24 <a href='tasks 24.html'>Внутреннее состояние</a></li>
+<li>25 <a href='tasks 25.html'>Коллекции</a></li>
+<li>26 <a href='tasks 26.html'>Рекурсия</a></li>
+<li>27 <a href='tasks 27.html'>Даты</a></li>
+<li>28 <a href='tasks 28.html'>Комбинаторика</a></li>
+<li>29 <a href='tasks 29.html'>SQL СУБД</a></li>
+</ol></div><div class='nav'><ul><li><a href='#heading'>^</a></li><li><a href='#task1058' class='example'>1*</a><li><a href='#task9774'>2</a><li><a href='#task3940'>3</a><li><a href='#task6707'>4</a><li><a href='#task9525'>5</a><li><a href='#task3289'>6</a><li><a href='#task5380'>7</a><li><a href='#task8613'>8</a><li><a href='#task9213'>9</a><li><a href='#task1904'>10</a><li><a href='#task2390'>11</a><li><a href='#task7534'>12</a><li><a href='#task9361'>13</a><li><a href='#task5900'>14</a></ul></div><div id='task1058' class='task_block'>
+<div class='task_id'>1058</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит массив из 4 значений, разделенных символов ','. Числа обозначают координаты двух точек A и B. Первое число это x точки A. Второе - y точки A. Третье x точки B. Четвертое y точки B. Вычислить расстояние между точками по формуле <br/>
+    <formula>
+      <sqrt><val>
+        (Bx - Ax)<sup>2</sup> + (By - Ay)<sup>2</sup>
+      </val></sqrt>
+    </formula>
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (coordinates)</th><th>Результат</th></tr>
+<tr><td>1</td><td>1,1,3,4</td><td class='preformatted'>Координаты точки A(1,00,1,00)
+Координаты точки B(3,00,4,00)
+Расстояние между точками равно 3,6056</td></tr>
+<tr><td>2</td><td>-2,4,8,-10</td><td class='preformatted'>Координаты точки A(-2,00,4,00)
+Координаты точки B(8,00,-10,00)
+Расстояние между точками равно 17,2047</td></tr>
+<tr><td>3</td><td>0,0,-5,-7</td><td class='preformatted'>Координаты точки A(0,00,0,00)
+Координаты точки B(-5,00,-7,00)
+Расстояние между точками равно 8,6023</td></tr>
+<tr><td>4</td><td>0,0,0,0</td><td class='preformatted'>Координаты точки A(0,00,0,00)
+Координаты точки B(0,00,0,00)
+Расстояние между точками равно 0,0000</td></tr>
+<tr><td>5</td><td>-1,-3,2,9</td><td class='preformatted'>Координаты точки A(-1,00,-3,00)
+Координаты точки B(2,00,9,00)
+Расстояние между точками равно 12,3693</td></tr>
+</table>
+<div class='task_desc'>
+Каждый элемент массива содержит число. Нужно преобразовать числа и записать их в переменные.
+</div>
+<div class='check_single preformatted'>String[] arr = value.split(",");
+double ax = Integer.parseInt(arr[0]);
+double ay = Integer.parseInt(arr[1]);
+double bx = Integer.parseInt(arr[2]);
+double by = Integer.parseInt(arr[3]);
+System.out.printf("Координаты точки A(%.2f,%.2f)\n", ax, ay);
+System.out.printf("Координаты точки B(%.2f,%.2f)\n", bx, by);
+double result;
+result = Math.sqrt(Math.pow(bx - ax, 2) + Math.pow(by - ay, 2));
+System.out.printf("Расстояние между точками равно %.4f", result);
+</div>
+</div>
+<div id='task9774' class='task_block'>
+<div class='task_id'>9774</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит число M и данные - целые числа, разделенные пробелами. Умножить все элементы массива на M.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>data</th><th>M</th></tr>
+<tr>
+<td>1</td><td>9 8 7 6 5 4</td><td>31</td><td class='preformatted'>279 248 217 186 155 124 </td></tr>
+<tr>
+<td>2</td><td>9 8 7 6 5 4</td><td>-3</td><td class='preformatted'>-27 -24 -21 -18 -15 -12 </td></tr>
+<tr>
+<td>3</td><td>98 76 54</td><td>11</td><td class='preformatted'>1078 836 594 </td></tr>
+<tr>
+<td>4</td><td></td><td>73</td><td class='preformatted'>
+</td></tr>
+</table>
+<div class='task_desc'>
+Подробное решение задачи выглядит так:
+</div>
+<div class='check_single preformatted'>if (firstValue.isEmpty()) {
+    System.out.println();
+}
+if (!firstValue.isEmpty()) {
+    String[] arr = firstValue.split(" ");
+    int m = Integer.parseInt(secondValue);
+    int num;
+    num = Integer.parseInt(arr[0]);
+    System.out.print(num * m + " ");
+    num = Integer.parseInt(arr[1]);
+    System.out.print(num * m + " ");
+    num = Integer.parseInt(arr[2]);
+    System.out.print(num * m + " ");
+    num = Integer.parseInt(arr[3]);
+    System.out.print(num * m + " ");
+}
+</div>
+<div class='task_desc'>
+Примените конструкцию цикла для реорганизации повторяющихся действий.
+</div>
+</div>
+<div id='task3940' class='task_block'>
+<div class='task_id'>3940</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит два массива данных - целые числа. Перемножить числа попарно на одинаковых индексах и вывести на экран.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>left</th><th>right</th></tr>
+<tr>
+<td>1</td><td>1 2 3 4 1</td><td>2 3 4 1 2</td><td class='preformatted'>2 6 12 4 2 </td></tr>
+<tr>
+<td>2</td><td>1 2 3 4 1 3 4 4 4 4</td><td>3 4 1 2 3 4 1 2 3 4</td><td class='preformatted'>3 8 3 8 3 12 4 8 12 16 </td></tr>
+<tr>
+<td>3</td><td>1 2 3</td><td>3 4</td><td class='preformatted'>Размеры массивов должны быть одинаковы
+</td></tr>
+<tr>
+<td>4</td><td>1 2 3</td><td>3 4 1 2</td><td class='preformatted'>Размеры массивов должны быть одинаковы
+</td></tr>
+</table>
+</div>
+<div id='task6707' class='task_block'>
+<div class='task_id'>6707</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит данные - числа, разделенные запятой. Для каждой пары чисел подряд вычислить сумму. Если у числа нет пары, просто вывести его значение.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (data)</th><th>Результат</th></tr>
+<tr><td>1</td><td>9,8,7,6,5,4,3</td><td class='preformatted'>Сумма элементов 9 и 8 равна 17
+Сумма элементов 7 и 6 равна 13
+Сумма элементов 5 и 4 равна 9
+У элемента 3 нет пары
+</td></tr>
+<tr><td>2</td><td>14,25,36,74,85</td><td class='preformatted'>Сумма элементов 14 и 25 равна 39
+Сумма элементов 36 и 74 равна 110
+У элемента 85 нет пары
+</td></tr>
+<tr><td>3</td><td>741,852,963,123</td><td class='preformatted'>Сумма элементов 741 и 852 равна 1593
+Сумма элементов 963 и 123 равна 1086
+</td></tr>
+<tr><td>4</td><td>8426,7139</td><td class='preformatted'>Сумма элементов 8426 и 7139 равна 15565
+</td></tr>
+<tr><td>5</td><td>75391,84562</td><td class='preformatted'>Сумма элементов 75391 и 84562 равна 159953
+</td></tr>
+<tr><td>6</td><td></td><td class='preformatted'>Нет данных
+</td></tr>
+<tr><td>7</td><td>7618349</td><td class='preformatted'>У элемента 7618349 нет пары
+</td></tr>
+</table>
+</div>
+<div id='task9525' class='task_block'>
+<div class='task_id'>9525</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит данные - целые числа, разделенные символов ",". Каждая пара чисел обозначает границы интервалов. Каждое число относится только к одному интервалу. Вывести границы всех интервалов в столбик, меньшую границу - слева. Вывести стрелочку "&lt;--" напротив интервалов, в которые попадает число 19 (сравнивать включительно).
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (data)</th><th>Результат</th></tr>
+<tr><td>1</td><td>1,5,3,10,8,15,18,20</td><td class='preformatted'>От 1 до 5
+От 3 до 10
+От 8 до 15
+От 18 до 20<--
+</td></tr>
+<tr><td>2</td><td>19,25,0,3,100,120</td><td class='preformatted'>От 19 до 25<--
+От 0 до 3
+От 100 до 120
+</td></tr>
+<tr><td>3</td><td>10,19,20,29,30,39</td><td class='preformatted'>От 10 до 19<--
+От 20 до 29
+От 30 до 39
+</td></tr>
+<tr><td>4</td><td>19,8,5,10,34,19,30,20</td><td class='preformatted'>От 8 до 19<--
+От 5 до 10
+От 19 до 34<--
+От 20 до 30
+</td></tr>
+<tr><td>5</td><td>1,1,20,60,20,20,19,19</td><td class='preformatted'>От 1 до 1
+От 20 до 60
+От 20 до 20
+От 19 до 19<--
+</td></tr>
+<tr><td>6</td><td>3,17,90,65</td><td class='preformatted'>От 3 до 17
+От 65 до 90
+</td></tr>
+<tr><td>7</td><td>1,100,2,99,3,98,4,97,5,96</td><td class='preformatted'>От 1 до 100<--
+От 2 до 99<--
+От 3 до 98<--
+От 4 до 97<--
+От 5 до 96<--
+</td></tr>
+<tr><td>8</td><td>1,5,3</td><td class='preformatted'>У последнего интервала отсутствует одна из границ
+</td></tr>
+</table>
+</div>
+<div id='task3289' class='task_block'>
+<div class='task_id'>3289</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит массив данных с разделителем ';'. Нужно найти индекс элемента, после которого находится элемент с разницей менее 20.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (data)</th><th>Результат</th></tr>
+<tr><td>1</td><td>0;21;45;50;70;100</td><td class='preformatted'>Сравниваю 0 и 21
+Разница между следующим и текущим больше 20
+Сравниваю 21 и 45
+Разница между следующим и текущим больше 20
+Сравниваю 45 и 50
+Разница между значениями меньше 20. Нарушение на индексе 2
+</td></tr>
+<tr><td>2</td><td>0;30;1;31;2;32</td><td class='preformatted'>Сравниваю 0 и 30
+Разница между следующим и текущим больше 20
+Сравниваю 30 и 1
+Разница между текущим и следующим больше 20
+Сравниваю 1 и 31
+Разница между следующим и текущим больше 20
+Сравниваю 31 и 2
+Разница между текущим и следующим больше 20
+Сравниваю 2 и 32
+Разница между следующим и текущим больше 20
+</td></tr>
+<tr><td>3</td><td></td><td class='preformatted'>Отсутствуют данные
+</td></tr>
+<tr><td>4</td><td>1000;990;980;970</td><td class='preformatted'>Сравниваю 1000 и 990
+Разница между значениями меньше 20. Нарушение на индексе 0
+</td></tr>
+<tr><td>5</td><td>1</td><td class='preformatted'>Массив содержит всего один элемент.
+</td></tr>
+</table>
+</div>
+<div id='task5380' class='task_block'>
+<div class='task_id'>5380</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит числа, разделенные пробелами. Нужно вывести на экран те числа, которые строго меньше чем длина массива.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (data)</th><th>Результат</th></tr>
+<tr><td>1</td><td>5 6 7 10 -2 0</td><td class='preformatted'>Элемент с индексом 0 содержит значение 5 и он меньше, чем длина массива 6
+Элемент с индексом 1 содержит значение 6
+Элемент с индексом 2 содержит значение 7
+Элемент с индексом 3 содержит значение 10
+Элемент с индексом 4 содержит значение -2 и он меньше, чем длина массива 6
+Элемент с индексом 5 содержит значение 0 и он меньше, чем длина массива 6
+</td></tr>
+<tr><td>2</td><td>4 3 2 1 5</td><td class='preformatted'>Элемент с индексом 0 содержит значение 4 и он меньше, чем длина массива 5
+Элемент с индексом 1 содержит значение 3 и он меньше, чем длина массива 5
+Элемент с индексом 2 содержит значение 2 и он меньше, чем длина массива 5
+Элемент с индексом 3 содержит значение 1 и он меньше, чем длина массива 5
+Элемент с индексом 4 содержит значение 5
+</td></tr>
+<tr><td>3</td><td>3 4 2 1</td><td class='preformatted'>Элемент с индексом 0 содержит значение 3 и он меньше, чем длина массива 4
+Элемент с индексом 1 содержит значение 4
+Элемент с индексом 2 содержит значение 2 и он меньше, чем длина массива 4
+Элемент с индексом 3 содержит значение 1 и он меньше, чем длина массива 4
+</td></tr>
+<tr><td>4</td><td>11</td><td class='preformatted'>Элемент с индексом 0 содержит значение 11
+</td></tr>
+<tr><td>5</td><td></td><td class='preformatted'>Отсутствуют исходные данные
+</td></tr>
+</table>
+</div>
+<div id='task8613' class='task_block'>
+<div class='task_id'>8613</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит два массива данных. Первый массив содержит фрагменты текста. Второй - числа. Они обозначают индексы элементов. Вывести элементы первого массива на индексах из второго массива. Если элемент отсутствует, вывести сообщение "нет элемента на индексе X".
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>fragments</th><th>indexes</th></tr>
+<tr>
+<td>1</td><td>a s d f g h j k</td><td>5 3 2 0</td><td class='preformatted'>Значение элемента на индексе 5 это h
+Значение элемента на индексе 3 это f
+Значение элемента на индексе 2 это d
+Значение элемента на индексе 0 это a
+</td></tr>
+<tr>
+<td>2</td><td>qaz wsx edc</td><td>5 3 2 0</td><td class='preformatted'>В массиве длиной 3 не может быть элемента на индексе 5В массиве длиной 3 не может быть элемента на индексе 3Значение элемента на индексе 2 это edc
+Значение элемента на индексе 0 это qaz
+</td></tr>
+<tr>
+<td>3</td><td>as df gh jk</td><td>3 1</td><td class='preformatted'>Значение элемента на индексе 3 это jk
+Значение элемента на индексе 1 это df
+</td></tr>
+<tr>
+<td>4</td><td>q w e r t y u i o p</td><td>9 7 3 5</td><td class='preformatted'>Значение элемента на индексе 9 это p
+Значение элемента на индексе 7 это i
+Значение элемента на индексе 3 это r
+Значение элемента на индексе 5 это y
+</td></tr>
+<tr>
+<td>5</td><td>asdf qwer</td><td>9 8</td><td class='preformatted'>В массиве длиной 2 не может быть элемента на индексе 9В массиве длиной 2 не может быть элемента на индексе 8</td></tr>
+<tr>
+<td>6</td><td></td><td>2 1 5</td><td class='preformatted'>Отсутствуют данные о фрагментах
+</td></tr>
+<tr>
+<td>7</td><td>v c x z</td><td></td><td class='preformatted'>Отсутствуют данные об индексах
+</td></tr>
+</table>
+</div>
+<div id='task9213' class='task_block'>
+<div class='task_id'>9213</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Дано два массива одинаковой длины: с числами и с фрагментами строк. Для всех элементов массива чисел, которые меньше 50, нужно вывести элементы из массива фрагментов с равным индексом.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>numbers</th><th>fragments</th></tr>
+<tr>
+<td>1</td><td>0,10,20,100,200</td><td>as,df,gh,jk,kl</td><td class='preformatted'>Число 0 меньше 50 и ему соответствует фрагмент as
+Число 10 меньше 50 и ему соответствует фрагмент df
+Число 20 меньше 50 и ему соответствует фрагмент gh
+</td></tr>
+<tr>
+<td>2</td><td>1000,200,50</td><td>qwer,asdf,zxcv</td><td class='preformatted'></td></tr>
+<tr>
+<td>3</td><td>51,52,53,54</td><td>q,q,q,q</td><td class='preformatted'></td></tr>
+<tr>
+<td>4</td><td>30,60,20,70</td><td>thirty,sixty,twenty,seventy</td><td class='preformatted'>Число 30 меньше 50 и ему соответствует фрагмент thirty
+Число 20 меньше 50 и ему соответствует фрагмент twenty
+</td></tr>
+<tr>
+<td>5</td><td>1,2,3</td><td>one,two,three,four</td><td class='preformatted'>Число 1 меньше 50 и ему соответствует фрагмент one
+Число 2 меньше 50 и ему соответствует фрагмент two
+Число 3 меньше 50 и ему соответствует фрагмент three
+</td></tr>
+<tr>
+<td>6</td><td>100,200,300</td><td>one hundred,two hundreds</td><td class='preformatted'></td></tr>
+</table>
+</div>
+<div id='task1904' class='task_block'>
+<div class='task_id'>1904</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит массив цифр, разделенных запятой. Нужно собрать из отдельных цифр целое число. К готовому числу нужно прибавить 7 и написать результат.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (digits)</th><th>Результат</th></tr>
+<tr><td>1</td><td>9,8,7,6</td><td class='preformatted'>Промежуточный результат 9
+Промежуточный результат 98
+Промежуточный результат 987
+Промежуточный результат 9876
+Готовое число: 9876
+Результат сложения:9883
+</td></tr>
+<tr><td>2</td><td>1,2,3,4,5,6</td><td class='preformatted'>Промежуточный результат 1
+Промежуточный результат 12
+Промежуточный результат 123
+Промежуточный результат 1234
+Промежуточный результат 12345
+Промежуточный результат 123456
+Готовое число: 123456
+Результат сложения:123463
+</td></tr>
+<tr><td>3</td><td>0,0,0,7</td><td class='preformatted'>Промежуточный результат 0
+Промежуточный результат 0
+Промежуточный результат 0
+Промежуточный результат 7
+Готовое число: 7
+Результат сложения:14
+</td></tr>
+<tr><td>4</td><td>5</td><td class='preformatted'>Промежуточный результат 5
+Готовое число: 5
+Результат сложения:12
+</td></tr>
+<tr><td>5</td><td>99</td><td class='preformatted'>Некорректное значение 99 ожидается один символ - цифра.
+</td></tr>
+<tr><td>6</td><td>6,4,100</td><td class='preformatted'>Промежуточный результат 6
+Промежуточный результат 64
+Некорректное значение 100 ожидается один символ - цифра.
+</td></tr>
+<tr><td>7</td><td>-3</td><td class='preformatted'>Некорректное значение -3 ожидается один символ - цифра.
+</td></tr>
+<tr><td>8</td><td>3,8,-5</td><td class='preformatted'>Промежуточный результат 3
+Промежуточный результат 38
+Некорректное значение -5 ожидается один символ - цифра.
+</td></tr>
+</table>
+</div>
+<div id='task2390' class='task_block'>
+<div class='task_id'>2390</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит данные - целые числа, разделенные символов ";". Нужно вывести на экран столько строк символов "#", сколько было введено чисел. Количество символов в строке зависит от значения соответствующего элемента массива. Если значение элемента отрицательно - вместо строки символов вывести сообщение "Элемент массива на индексе $i меньше нуля" и продолжить работу.
+</div>
+<table class='check_values_v2'>
+<tr><th>Номер теста</th><th>Исходные данные (amounts)</th><th>Результат</th></tr>
+<tr><td>1</td><td>9;8;7;6;5;4</td><td class='preformatted'>#########
+########
+#######
+######
+#####
+####
+</td></tr>
+<tr><td>2</td><td>15;0;4;20;10</td><td class='preformatted'>###############
+
+####
+####################
+##########
+</td></tr>
+<tr><td>3</td><td>3</td><td class='preformatted'>###
+</td></tr>
+<tr><td>4</td><td></td><td class='preformatted'>Нет данных
+</td></tr>
+<tr><td>5</td><td>3;-1;6;-100000;4</td><td class='preformatted'>###
+Элемент массива на индексе 1 меньше нуля
+######
+Элемент массива на индексе 3 меньше нуля
+####
+</td></tr>
+</table>
+</div>
+<div id='task7534' class='task_block'>
+<div class='task_id'>7534</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит два массива данных одинакового размера. Первый массив содержит символы. Второй - числа. Для каждого элемента первого массива в результате получится отдельная строка. Количество символов в этой строке равно значению элемента из второго массива на том же индексе.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>chars</th><th>amounts</th></tr>
+<tr>
+<td>1</td><td>q a z</td><td>3 2 5</td><td class='preformatted'>qqq
+aa
+zzzzz
+</td></tr>
+<tr>
+<td>2</td><td>q w e r t y</td><td>3 3 1 7 2 6</td><td class='preformatted'>qqq
+www
+e
+rrrrrrr
+tt
+yyyyyy
+</td></tr>
+<tr>
+<td>3</td><td>a s d f</td><td>9 0 7 2</td><td class='preformatted'>aaaaaaaaa
+
+ddddddd
+ff
+</td></tr>
+<tr>
+<td>4</td><td>a s d f</td><td>3 3 3</td><td class='preformatted'>Длины массивов не совпадают
+</td></tr>
+<tr>
+<td>5</td><td>z x c</td><td>1 2 3 4</td><td class='preformatted'>Длины массивов не совпадают
+</td></tr>
+<tr>
+<td>6</td><td></td><td>1 1 1</td><td class='preformatted'>Отсутствуют данные о символах
+</td></tr>
+<tr>
+<td>7</td><td>a a a</td><td></td><td class='preformatted'>Отсутствуют данные о количествах
+</td></tr>
+</table>
+</div>
+<div id='task9361' class='task_block'>
+<div class='task_id'>9361</div>
+<h3>Задача</h3>
+<div class='task_desc'>
+Пользователь вводит две даты в формате dd_MM_yyyy, где yyyy - четыре цифры года, MM - две цифры месяца, dd - две цифры дня. Нужно определить, какая из дат больше: первая или вторая.
+</div>
+<table class='check_values_v2'>
+<tr><th rowspan='2'>Номер теста</th><th colspan='2'>Исходные данные</th><th rowspan='2'>Результат</th></tr><tr>
+<th>firstDate</th><th>secondDate</th></tr>
+<tr>
+<td>1</td><td>11_03_1685</td><td>05_03_1685</td><td class='preformatted'>Первая дата 11_03_1685 больше второй 05_03_1685
+</td></tr>
+<tr>
+<td>2</td><td>07_02_1986</td><td>02_07_1986</td><td class='preformatted'>Вторая дата 02_07_1986 больше первой 07_02_1986
+</td></tr>
+<tr>
+<td>3</td><td>11_01_1804</td><td>11_02_1804</td><td class='preformatted'>Вторая дата 11_02_1804 больше первой 11_01_1804
+</td></tr>
+<tr>
+<td>4</td><td>07_07_2003</td><td>07_07_1993</td><td class='preformatted'>Первая дата 07_07_2003 больше второй 07_07_1993
+</td></tr>
+<tr>
+<td>5</td><td>29_01_1785</td><td>29_03_1777</td><td class='preformatted'>Первая дата 29_01_1785 больше второй 29_03_1777
+</td></tr>
+<tr>
+<td>6</td><td>01_01_1970</td><td>01_01_1970</td><td class='preformatted'>Даты равны
+</td></tr>
+<tr>
+<td>7</td><td>04_28_1502</td><td>01_02_2023</td><td class='preformatted'>Месяц должен быть меньше 12
+</td></tr>
+<tr>
+<td>8</td><td>01_02_2023</td><td>07_15_1934</td><td class='preformatted'>Месяц должен быть меньше 12
+</td></tr>
+<tr>
+<td>9</td><td>01_02</td><td>01_02_2023</td><td class='preformatted'>Дата должна состоять из трех фрагментов
+</td></tr>
+<tr>
+<td>10</td><td>01_02_2023</td><td>01_02</td><td class='preformatted'>Дата должна состоять из трех фрагментов
+</td></tr>
+<tr>
+<td>11</td><td>4</td><td>01_02_2023</td><td class='preformatted'>Дата должна состоять из трех фрагментов
+</td></tr>
+<tr>
+<td>12</td><td>01_02_2023</td><td>14</td><td class='preformatted'>Дата должна состоять из трех фрагментов
+</td></tr>
+</table>
+</div>
+<div id="task5900" class="task_block">
+	<div class="task_id">5900</div>
+	<h3>Задача</h3>
+	<div class="task_desc">Пользователь вводит массив из 13 цифр штрих-кода стандарта EAN-13. Вычислить контрольную сумму. Сравнить полученную сумму с последней цифрой в штрих-коде, чтобы проверить его корректность. Нумерация цифр в штрихкоде ведется справа налево и начинается с единицы. Последняя цифра не участвует в расчете. У каждой цифры есть свой "вес". Вес цифр на четных позициях равен 1. Вес цифр на нечетных позициях равен 3. Каждая цифра штрихкода умножается на свой вес. Полученные значения суммируются. Это значение вычитается из ближайшего к нему числа, кратного 10. Полученная цифра является контрольной суммой.</div>
+	<table class="check_values">
+		<tr>
+			<th>Номер теста</th>
+			<th>Вводимые данные</th>
+			<th>Результат</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>4 0 0 6 3 8 1 3 3 3 9 3 1</td>
+			<td class="preformatted">Цифра 4 вес 1 произведение 4 накопленная сумма 4
+Цифра 0 вес 3 произведение 0 накопленная сумма 4
+Цифра 0 вес 1 произведение 0 накопленная сумма 4
+Цифра 6 вес 3 произведение 18 накопленная сумма 22
+Цифра 3 вес 1 произведение 3 накопленная сумма 25
+Цифра 8 вес 3 произведение 24 накопленная сумма 49
+Цифра 1 вес 1 произведение 1 накопленная сумма 50
+Цифра 3 вес 3 произведение 9 накопленная сумма 59
+Цифра 3 вес 1 произведение 3 накопленная сумма 62
+Цифра 3 вес 3 произведение 9 накопленная сумма 71
+Цифра 9 вес 1 произведение 9 накопленная сумма 80
+Цифра 3 вес 3 произведение 9 накопленная сумма 89
+Контрольная сумма 1 совпадает с последней цифрой 1</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>9 7 8 5 9 8 5 0 3 6 8 2 4</td>
+			<td class="preformatted">Цифра 9 вес 1 произведение 9 накопленная сумма 9
+Цифра 7 вес 3 произведение 21 накопленная сумма 30
+Цифра 8 вес 1 произведение 8 накопленная сумма 38
+Цифра 5 вес 3 произведение 15 накопленная сумма 53
+Цифра 9 вес 1 произведение 9 накопленная сумма 62
+Цифра 8 вес 3 произведение 24 накопленная сумма 86
+Цифра 5 вес 1 произведение 5 накопленная сумма 91
+Цифра 0 вес 3 произведение 0 накопленная сумма 91
+Цифра 3 вес 1 произведение 3 накопленная сумма 94
+Цифра 6 вес 3 произведение 18 накопленная сумма 112
+Цифра 8 вес 1 произведение 8 накопленная сумма 120
+Цифра 2 вес 3 произведение 6 накопленная сумма 126
+Контрольная сумма 4 совпадает с последней цифрой 4</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>5 0 3 2 2 2 7 7 0 0 0 2 2</td>
+			<td class="preformatted">Цифра 5 вес 1 произведение 5 накопленная сумма 5
+Цифра 0 вес 3 произведение 0 накопленная сумма 5
+Цифра 3 вес 1 произведение 3 накопленная сумма 8
+Цифра 2 вес 3 произведение 6 накопленная сумма 14
+Цифра 2 вес 1 произведение 2 накопленная сумма 16
+Цифра 2 вес 3 произведение 6 накопленная сумма 22
+Цифра 7 вес 1 произведение 7 накопленная сумма 29
+Цифра 7 вес 3 произведение 21 накопленная сумма 50
+Цифра 0 вес 1 произведение 0 накопленная сумма 50
+Цифра 0 вес 3 произведение 0 накопленная сумма 50
+Цифра 0 вес 1 произведение 0 накопленная сумма 50
+Цифра 2 вес 3 произведение 6 накопленная сумма 56
+Контрольная сумма 4 расходится с последней цифрой 2</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>1 2 3 4 5 6 7 8 9 0</td>
+			<td class="preformatted">Некорректная длина штрих-кода</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="preformatted"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6</td>
+			<td class="preformatted">Некорректная длина штрих-кода</td>
+		</tr>
+	</table>
+</div>Версия 20240202. Подборка задач, выбор порядка подачи и подготовка тестовых данных - Крюков Александр, Омск 2013-2024. <a href='https://github.com/AKryukov92/programming-basics'>Основной репозиторий</a></body></html>
