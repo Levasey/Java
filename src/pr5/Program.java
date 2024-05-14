@@ -28,6 +28,24 @@ public class Program {
         task2772(1, 2, 3);
         task2772(-3, 0, 2);
 
+        System.out.println("Задача 5");
+        task505("test", "pass", "localhost", "5432", "my_db");
+        task505("admin", "7e8efd48d69c", "production-node1", "5432", "bank");
+        task505("akryukov", "123", "localhost", "dev-node1", "bank");
+
+        System.out.println("Задача 6");
+        task506(3, 5, 7, 9);
+        task506(7, 1, 11, 3);
+        task506(1, 7, 11, 3);
+        task506(2, 13, 5, 19);
+        task506(13, 11, 7, 19);
+        task506(11, 13, 7, 19);
+        task506(23, 3, 9, 11);
+        task506(-2, 8, 9, 7);
+        task506(3, -4, 5, 6);
+        task506(13, 15, -17, 19);
+        task506(6911, 5881, 3203, -4639);
+
         System.out.println("Задача 8");
         System.out.println("Должно быть: Остаток на счету: 0 рублей 98 копеек.");
         task2375(3,87,2,89);
@@ -79,6 +97,27 @@ public class Program {
     public static void task8813(String firstName, String lastName) {
         String Name = "Меня зовут " + lastName + ", " + firstName + " " + lastName;
         System.out.println(Name);
+    }
+
+    public static void task505(String user, String pass, String host, String port, String db){
+        System.out.println("User ID=" + user + ";Password=" + pass + ";Host=" + host + ";Port=" + port + ";Database=" + db + ";");
+    }
+
+    public static void task506(int widthA, int heightA, int widthB, int heightB){
+        if (widthA < 0){
+            System.out.println("Значение A должно быть неотрицательным");
+        } else if (heightA < 0) {
+            System.out.println("Значение B должно быть неотрицательным");
+        } else if (widthB < 0) {
+            System.out.println("Значение C должно быть неотрицательным");
+        } else if (heightB < 0) {
+            System.out.println("Значение D должно быть неотрицательным");
+        } else if (widthB > widthA && heightB > heightA){
+            System.out.println("Размещение возможно");
+        }
+        else{
+            System.out.println("Размещение невозможно");
+        }
     }
 
     public static void task2375(int accountRoubles, int accountKop, int priceRoubles, int priceKop) {

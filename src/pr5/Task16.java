@@ -7,7 +7,7 @@ public class Task16 {
         System.out.println("Даны две ёмкости объемом 5 и 8 литров");
         int n = 0;
         int small = 0;
-        int big = 7;
+        int big = 0;
         while (n < 15) {
             System.out.println("Выбери действие:");
             System.out.println("1.Налить из крана в маленькую ёмкость\n" +
