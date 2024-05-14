@@ -5,16 +5,17 @@ import java.util.Scanner;
 
 public class Tasks {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "C:/Users/User/Downloads/config1.cfg";
+        String path = "./Task/files/task2312/config1.cfg";
         File file = new File(path);
-        Scanner fileReader = new Scanner(file);
         if (!file.exists()) {//если файл не существует
             System.out.println("Файл не найден " + file.getAbsolutePath());
         }
+        Scanner fileReader = new Scanner(file);
         if (file.exists()) {//если файл присутствует
-            while (fileReader.hasNextLine()){//действия по чтению файла
-                System.out.println(fileReader.nextLine());
-            }
+            String host = fileReader.nextLine();
+            String user = fileReader.nextLine();
+            String pass = fileReader.nextLine();
+
         }
         if (!fileReader.hasNext()) {//если в файле нечего читать
             System.out.println("Адрес сервера не указан");

@@ -155,7 +155,7 @@ public class Program {
         else if (a == -1){
             System.out.printf("Получилось : -x^2 + %d*x + %d = 0.\n", b, c);
         }
-        else if (b == 0) {
+        if (b == 0) {
             System.out.printf("Получилось : %d*x^2 + %d = 0.\n", a, c);
         }
         else if (b == 1){
@@ -164,16 +164,14 @@ public class Program {
         else if (b == -1){
             System.out.printf("Получилось : %d*x^2 - x + %d = 0.\n", a, c);
         }
-        else if (c == 0) {
-            System.out.printf("Получилось : %d*x^2 + %d*x = 0.\n", a, b);
-        }
         else if (b < 0) {
             System.out.printf("Получилось : %d*x^2 - %d*x + %d = 0.\n", a, Math.abs(b), c);
         }
+        if (c == 0) {
+            System.out.printf("Получилось : %d*x^2 + %d*x = 0.\n", a, b);
+        }
         else if (c < 0) {
             System.out.printf("Получилось : %d*x^2 + %d*x - %d = 0.\n", a, b, Math.abs(c));
-        } else {
-            System.out.printf("Получилось : %d*x^2 + %d*x + %d = 0.\n", a, b, c);
         }
     }
 }
