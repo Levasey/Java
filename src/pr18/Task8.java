@@ -17,27 +17,37 @@ public class Task8 {
         if (!file.exists()) {//если файл не существует
             System.out.println("ОШИБКА: Список не найден");
         }
-        Scanner fileReader = new Scanner(file);
-
+        Scanner list_Reader = new Scanner(file);
         if (file.exists()) {//если файл присутствует
-            while (fileReader.hasNext()) {
-                int sum = 0;
-                String value = fileReader.nextLine();
-                String[] arr = value.split(";");
-                int x, y;
-                try {
-                    x = Integer.parseInt(arr[0]);
-                    y = Integer.parseInt(arr[1]);
-                } catch (NumberFormatException e) {
-                    System.out.println("ОШИБКА: Не удалось преобразовать число");
-                    break;
+            int total = 0;
+            while (list_Reader.hasNext()) {
+                String value = list_Reader.nextLine();
+                String data_path = "./Task/files/task3148/" + value;
+                File file_data = new File(data_path);
+                Scanner data_Reader = new Scanner(file_data);
+
+                int counter = 0;
+                System.out.println("Обработка файла " + data_path);
+                while (data_Reader.hasNext()) {
+
+                    String value_data = data_Reader.nextLine();
+                    String[] arr = value_data.split(";");
+                    if (arr.length != 2){
+                        System.out.println("ОШИБКА: В строке должно быть два числа. Найдено " + arr.length);
+                        break;
+                    }
+                        int x = Integer.parseInt(arr[0]);
+                    int y = Integer.parseInt(arr[1]);
+                    if (x < y) {
+                        counter++;
+                    }
                 }
-                if (x < y) {
-                    sum++;
-                }
-                System.out.println("Количество подходящих записей в файле: " + sum);
+                total += counter;
+                System.out.println("Количество подходящих записей в файле: " + counter);
+                data_Reader.close();
             }
+            System.out.println("Общее количество подходящих записей: " + total);
+            list_Reader.close();
         }
-        fileReader.close();
     }
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Task11 {
     String department_name = " ";
+
     public static void main(String[] args) {
         String path = "./Task/files/task6170/departments.csv";
         String path1 = "./Task/files/task6170/employees.csv ";
@@ -29,11 +30,11 @@ public class Task11 {
             int employee_id = Integer.parseInt(arr[0]);
             int department_id = Integer.parseInt(arr[10]);
 
-            String str = departmentsReader.nextLine();
+                String str = departmentsReader.nextLine();
             String[] arr1 = str.split(",");
             int department_id1 = Integer.parseInt(arr1[0]);
 
-            if (department_id == department_id1){
+            if (department_id == department_id1) {
                 key.department_name = arr1[1];
             }
             if (id == employee_id) {

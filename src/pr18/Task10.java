@@ -18,6 +18,7 @@ public class Task10 {
         Scanner s = new Scanner(System.in);
         System.out.println("Введите идентификатор композитора");
         int id = Integer.parseInt(s.nextLine());
+        int counter = 0;
         while (fileReader.hasNext()) {
             String value = fileReader.nextLine();
             String[] arr = value.split(";");
@@ -26,9 +27,14 @@ public class Task10 {
                 System.out.println("Имя: " + arr[1]);
                 System.out.println("фамилия: " + arr[2]);
                 System.out.println("место рождения: " + arr[4]);
+                counter++;
                 break;
             }
         }
+        if (counter == 0){
+            System.out.println("Композитор с кодом " + id + " не найден");
+        }
+
         fileReader.close();
     }
 }

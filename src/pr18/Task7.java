@@ -16,22 +16,24 @@ public class Task7 {
                 continue;
             }
             Scanner fileReader = new Scanner(file);
-            if (file.exists()){
-                int sum = 0;
-                while (fileReader.hasNext()){
-                    String value = fileReader.nextLine();
-                    try {
+            if (file.exists()) {
+
+
+                try {
+                    int sum = 0;
+                    while (fileReader.hasNext()) {
+                        String value = fileReader.nextLine();
                         int integer = Integer.parseInt(value);
                         sum += integer;
-                    }catch (NumberFormatException e){
-                        System.out.println("ОШИБКА: Не удалось преобразовать число");
-                        break;
                     }
+                    System.out.println("Сумма в файле: " + sum);
+                    total += sum;
+
+                } catch (NumberFormatException e) {
+                    System.out.println("ОШИБКА: Не удалось преобразовать число");
                 }
-            System.out.println("Сумма в файле: " + sum);
-            total += sum;
-            System.out.println("Общая сумма: " + total);
             }
+            System.out.println("Общая сумма: " + total);
             fileReader.close();
         }
 

@@ -12,13 +12,15 @@ public class Task6 {
         while (fileReader.hasNext()) {
             String value = fileReader.nextLine();
             String[] arr = value.split("-");
+            if (arr.length != 3) {
+                System.out.println(value + " Дата должна состоять из трех чисел");
+                continue;
+            }
             int year = Integer.parseInt(arr[0]);
             int month = Integer.parseInt(arr[1]);
             int data = Integer.parseInt(arr[2]);
             if (month > 12){
                 System.out.println(value + " Месяц должен быть от 1 до 12 включительно");
-            } else if (arr.length != 3) {
-                System.out.println(value + " Дата должна состоять из трех чисел");
             } else if (month == 01 && data > 31) {
                 System.out.println(value + " Количество дней в январе не должно превышать 31");
             } else if (year % 4 != 0 && month == 02 && data > 28) {
