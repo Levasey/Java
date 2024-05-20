@@ -9,7 +9,7 @@ public class Task16 {
         System.out.println("Даны две ёмкости объемом 5 и 8 литров\n" +
                 "Необходимо чтобы в емкости 5 литров стало 4 литра воды.");
         int n = 0;
-        Task16 puzzle= new Task16();
+        Task16 puzzle = new Task16();
 
         while (n < 15) {
             System.out.println("Выбери действие:");

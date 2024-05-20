@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Task5 {
+public class Task4 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner s = new Scanner(System.in);
         System.out.println("Введите номер файла");
         String id = s.nextLine();
-        String path = "./Task/files/task7396/test" + id + ".txt";
+        String path = "./Task/files/task4488/test" + id + ".txt";
         File file = new File(path);
 
         if (!file.exists()) {//если файл не существует
@@ -19,17 +19,13 @@ public class Task5 {
         }
         Scanner fileReader = new Scanner(file);
         if (file.exists()) {//если файл присутствует
+            String value = fileReader.nextLine();
+            int sum = 0;
             while (fileReader.hasNext()) {
-                String value = fileReader.nextLine();
-                String[] arr = value.split(";");
-                int sum = 0;
-                for (int i = 0; i < arr.length; i++) {
-                    int t = Integer.parseInt(arr[i]);
-                    sum += t;
-                }
-                System.out.println("Количество чисел в строке " + arr.length + "\n" +
-                        "Их сумма равна " + sum);
+                String remain = fileReader.nextLine();
+                sum++;
             }
+            System.out.println(value + " " + sum);
         }
         fileReader.close();
     }

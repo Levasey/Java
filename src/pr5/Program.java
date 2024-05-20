@@ -75,7 +75,7 @@ public class Program {
         System.out.println("Должно быть: 5*x^2 -1*x +7 = 0");
         task515(5, -1, 7);
         System.out.println("Должно быть: 5*x^2 -3*x +7 = 0");
-        task515(5, -2,7);
+        task515(5, -3,7);
         System.out.println("Должно быть: 5*x^2 +7 = 0");
         task515(5, 0, 7);
         System.out.println("Должно быть: 5*x^2 +3*x -4 = 0");
@@ -87,6 +87,7 @@ public class Program {
         System.out.println("Должно быть: 5*x^2 +3*x  = 0");
         task515(5, 3, 0);
         task515(0,0,2);
+        task515(0, 5,0);
     }
 
     public static void task8307(String goal) {
@@ -147,31 +148,38 @@ public class Program {
 
     public static void task515(int a, int b, int c) {
         if (a == 0) {
-            System.out.printf("Получилось : %d*x + %d = 0.\n", b, c);
-        }
-        else if (a == 1){
-            System.out.printf("Получилось : x^2 + %d*x + %d = 0.\n", b, c);
-        }
-        else if (a == -1){
-            System.out.printf("Получилось : -x^2 + %d*x + %d = 0.\n", b, c);
+            System.out.printf("Получилось : ");
+        } else if (a == 1){
+            System.out.printf("Получилось : x^2");
+        } else if (a == -1){
+            System.out.printf("Получилось : -x^2");
+        } else if (a < 0) {
+            System.out.printf("Получилось : %dx^2", a);
+        } else if (a > 0){
+            System.out.printf("Получилось : %dx^2", a);
         }
         if (b == 0) {
-            System.out.printf("Получилось : %d*x^2 + %d = 0.\n", a, c);
+            System.out.printf("");
         }
         else if (b == 1){
-            System.out.printf("Получилось : %d*x^2 + x + %d = 0.\n", a, c);
+            System.out.printf(" + x");
         }
         else if (b == -1){
-            System.out.printf("Получилось : %d*x^2 - x + %d = 0.\n", a, c);
+            System.out.printf(" - x");
         }
         else if (b < 0) {
-            System.out.printf("Получилось : %d*x^2 - %d*x + %d = 0.\n", a, Math.abs(b), c);
+            System.out.printf(" - %d*x", Math.abs(b));
+        }
+        else if (b > 0) {
+            System.out.printf(" + %d*x", b);
         }
         if (c == 0) {
-            System.out.printf("Получилось : %d*x^2 + %d*x = 0.\n", a, b);
+            System.out.printf(" = 0.\n");
         }
         else if (c < 0) {
-            System.out.printf("Получилось : %d*x^2 + %d*x - %d = 0.\n", a, b, Math.abs(c));
+            System.out.printf(" - %d = 0.\n", Math.abs(c));
+        } else if (c > 0) {
+            System.out.printf(" + %d = 0.\n", Math.abs(c));
         }
     }
 }
