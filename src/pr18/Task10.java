@@ -14,7 +14,7 @@ public class Task10 {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        String header = fileReader.nextLine();
+        String headline = fileReader.nextLine();
         Scanner s = new Scanner(System.in);
         System.out.println("Введите идентификатор композитора");
         int id = Integer.parseInt(s.nextLine());
