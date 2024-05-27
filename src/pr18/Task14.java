@@ -17,10 +17,10 @@ public class Task14 {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        while (fileReader.hasNext()) {
-            String t = fileReader.nextLine();
             int count = 0;
             int count_max = 0;
+        while (fileReader.hasNext()) {
+            String t = fileReader.nextLine();
             if (t.equals("{")){
                 System.out.println("Скобки открылись.");
                 count++;
