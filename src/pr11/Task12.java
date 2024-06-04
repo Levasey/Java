@@ -14,16 +14,10 @@ public class Task12 {
         if (!data.isEmpty()) {
             String[] arr = data.split(" ");
             String[] arr1 = new String[arr.length];
-            System.arraycopy(arr, 0, arr1, 0, arr.length);
-            for (int i = arr1.length - 1; i > 0; i--) {
-                arr1[i] = arr1[i - 1];
-            }
+            System.arraycopy(arr, 0, arr1, 1, arr.length - 1);
             arr1[0] = "BEGIN";
             String[] arr2 = new String[arr.length];
-            System.arraycopy(arr, 0, arr2, 0, arr.length);
-            for (int i = 0; i < arr2.length - 1; i++) {
-                arr2[i] = arr2[i + 1];
-            }
+            System.arraycopy(arr, 0, arr2, 0, arr.length -1);
             arr2[arr2.length - 1] = "END";
             for (int i = 0; i < arr.length; i++) {
                 System.out.println(arr1[i] + " " + arr[i] + " " + arr2[i]);

@@ -14,8 +14,8 @@ public class Task13 {
             String[] arr = data.split(" ");
             int count = 0;
             int counter = 0;
-            String[] arr_count = new String[arr.length / 2 + 1];
             String[] arr_uncount = new String[arr.length / 2];
+            String[] arr_count = new String[arr.length - arr_uncount.length];
             for (int i = 0; i < arr.length; i++) {
                 if (i % 2 != 0) {
                     arr_uncount[count] = arr[i];

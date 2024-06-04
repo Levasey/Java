@@ -20,7 +20,7 @@ public class Task14 {
                 System.out.println("На индекс " + count + " был записан элемент со значением " + arr[count]);
                 count++;
                 System.out.println("Индекс записи: " + count);
-                for (int j = 0; j < arr.length; j++) {
+                for (int j = 0; j < count; j++) {
                     System.out.print(arr[j] + " ");
                 }
                 System.out.println();
