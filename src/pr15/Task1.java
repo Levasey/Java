@@ -9,9 +9,11 @@ public class Task1 {
         String letter = scanner.nextLine();
         for (int i = 0; i < arr.length; i++) {
             if (letter.equals(arr[i])){
-                arr[i] = arr[i] + " Найдено";
+                System.out.print(arr[i]);
+                System.out.print(" Найдено\n");
+            } else {
+                System.out.println(arr[i]);
             }
-            System.out.println(arr[i]);
         }
     }
 }

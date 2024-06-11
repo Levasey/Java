@@ -180,7 +180,9 @@ public class Library {
 
     public static boolean task7581(String[] arr){
         for (String s : arr) {
-            return s.equals("x");
+            if (s.equals("x")) {
+                return true;
+            }
         }
         return false;
     }

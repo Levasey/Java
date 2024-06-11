@@ -45,7 +45,7 @@ public class Task15 {
             }
             fileReader.close();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Файл не найден " + file.getAbsolutePath());
         }
     }
 }
