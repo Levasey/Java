@@ -1,4 +1,4 @@
-package pr18;
+package Composer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,16 +19,15 @@ public class ComposerHTML {
                     "<h1>Комозиторы </h1>\n" +
                     "\n" +
                     "<ol>\n");
-            String path = "./Task/files/task7788/composers.csv";
-            File file = new File(path);
+            File file = new File("./Task/files/task7788/composers.csv");
             Scanner fileReader = new Scanner(file);
             String header = fileReader.nextLine();
             while (fileReader.hasNext()) {
                 String value = fileReader.nextLine();
                 String[] arr = value.split(";");
-                printWriter.write("<li>" + arr[0] + " " +  arr[1] + " " + arr[2] + " " + arr[3] + "</li>\n");
+                    printWriter.write("<li>" + " Имя " + arr[1] + " Фамилия " + arr[2] + " дата рождения " + arr[3] +
+                            " место рождения " + arr[4] + " дата смерти " + arr[5] + " место смерти " + arr[6] + " ссылка на страницу Википедии " +arr[7] + "</li>\n");
             }
-            fileReader.close();
             printWriter.write("</ol>\n" +
                     "</body>\n" +
                     "</html>");
@@ -37,5 +36,4 @@ public class ComposerHTML {
             System.out.println("Файл не наден " + composer.getAbsolutePath());
         }
     }
-
 }
