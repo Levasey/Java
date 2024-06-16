@@ -63,21 +63,17 @@ public class Task12_2 {
                 String value = EmployeeReader.nextLine();
                 String[] arr = value.split(",");
                 String deps_id = arr[10];
-
                 if (department_id.equals(deps_id)) {
                     c.first_name = arr[1];
                     c.last_name = arr[2];
                     c.phone_number = arr[4];
                     employees.add(c);
-
-
                 }
             }
             EmployeeReader.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         return employees;
     }
 }

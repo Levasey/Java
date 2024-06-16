@@ -1,8 +1,5 @@
 package Department;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 class Department {
     private String department_id;
@@ -10,20 +7,53 @@ class Department {
     private String manager_id;
     private String location_id;
 
+    public Department(){
+    }
+
+    public Department(String department_id, String department_name, String manager_id, String location_id){
+        this.department_id = department_id;
+        this.department_name = department_name;
+        this.manager_id = manager_id;
+        this.location_id = location_id;
+    }
+
     public String getDepartment_id() {
-        File file1 = new File("./Task/files/task8665/departments.csv");
-        try {
-            Scanner departmentsReader = new Scanner(file1);
-            while (departmentsReader.hasNextLine()) {
-                String str = departmentsReader.nextLine();
-                String[] arr_dep = str.split(",");
-                department_id = arr_dep[0];
-                departmentsReader.close();
-            }
-            departmentsReader.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
         return department_id;
+    }
+
+    public void setDepartment_id(String department_id){
+        this.department_id = department_id;
+    }
+
+    public String getDepartment_name(){
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
+    public String getManager_id() {
+        return manager_id;
+    }
+
+    public void setManager_id(String manager_id) {
+        this.manager_id = manager_id;
+    }
+
+    public String getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(String location_id) {
+        this.location_id = location_id;
+    }
+    public String toString() {
+        return "User{" +
+                "department_id='" + department_id + '\'' +
+                ", department_name=" + department_name +
+                ", manager_id='" + manager_id + '\'' +
+                ", location_id='" + location_id + '\'' +
+                '}';
     }
 }
