@@ -2,9 +2,12 @@ package pr15;
 
 import java.util.Scanner;
 
-public class Task2 {
+public class Task3 {
     public static void main(String[] args) {
-        int[] arr = new int[]{11, 13, 17, 19, 10, 12, 14, 15, 16, 18, 20};
+        int[] arr = new int[11];
+        for (int i = 0; i < 11; i++) {
+            arr[i] = i + 10;
+        }
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
         for (int i = 0; i < arr.length; i++) {
