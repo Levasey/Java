@@ -142,7 +142,7 @@ public class Library {
         LocalDate saturday = dt1.with(DayOfWeek.SATURDAY);
         LocalDate sunday = dt1.with(DayOfWeek.SUNDAY);
         long count = ChronoUnit.DAYS.between(monday, dt1);
-        System.out.println("Нужно отнять " + count+ " дней чтобы получился понедельник");
+        System.out.println("Нужно отнять " + count + " дней чтобы получился понедельник");
         System.out.println("понедельник это " + monday + "\n" +
                 "вторник это " + tuesday + "\n" +
                 "среда это " + wednesday + "\n" +
@@ -157,16 +157,26 @@ public class Library {
         LocalDateTime noZone = LocalDateTime.parse(date, fmt);
         ZonedDateTime omsk = noZone.atZone(ZoneId.of("UTC+06:00"));
         ZonedDateTime nsk = omsk.withZoneSameInstant(ZoneId.of("UTC+07:00"));
+        ZonedDateTime moskow = omsk.withZoneSameInstant(ZoneId.of("UTC+03:00"));
+        ZonedDateTime london = omsk.withZoneSameInstant(ZoneId.of("UTC+01:00"));
+        ZonedDateTime kuba = omsk.withZoneSameInstant(ZoneId.of("UTC-05:00"));
+        ZonedDateTime nepal = omsk.withZoneSameInstant(ZoneId.of("UTC+05:45"));
         System.out.println("Когда в Омске " + omsk.format(fmt) + "\n" +
-                "в Новосибирске " + nsk.format(fmt));
+                "в Новосибирске " + nsk.format(fmt) + "\n" +
+                "в Москве " + moskow.format(fmt) + "\n" +
+                "в Лондоне " + london.format(fmt) + "\n" +
+                "на Кубе " + kuba.format(fmt) + "\n" +
+                "в Непале " + nepal.format(fmt));
+        System.out.println();
     }
 
     public static void task2130(String utc) throws ParseException {
-        Calendar calendar = new GregorianCalendar();
-        DateFormat df = new SimpleDateFormat("yyyy-MM -dd HH:mm");
-        Date date1 = df.parse("2023-06-28 18:27");
-        calendar.setTime(date1);
-        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
-        System.out.println(df.format(calendar.getTime()));
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime noZone = LocalDateTime.parse("2023-06-28 18:27", fmt);
+        ZonedDateTime greenvich = noZone.atZone(ZoneId.of("UTC+00:00"));
+        ZonedDateTime utcZone = greenvich.withZoneSameInstant(ZoneId.of(utc));
+        System.out.println("Если время по Гринвичу равно 2023-06-28 18:27\n" +
+                "то при таймзоне " + utc + " время будет равно " + utcZone.format(fmt));
+        System.out.println();
     }
 }
