@@ -17,11 +17,9 @@ public class Task4 {
         }
         search(haystack, neede, i + 1);
     }
-
     public static void search0(int[] haystack){
         search(haystack, 4, 1);
     }
-
     public static void search1(int[] haystack){
         search(haystack, 4, 2);
     }

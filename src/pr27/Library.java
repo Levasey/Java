@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,6 +70,7 @@ public class Library {
 
     public static void task1912(String hour){
         String yMdhm = "HH:mm";
+
         LocalDateTime dt2 = LocalDateTime.parse(hour, DateTimeFormatter.ofPattern(yMdhm));
         int hr = dt2.getHour();
         int mt = dt2.getMinute();
@@ -101,21 +103,15 @@ public class Library {
     }
 
     public static void task8381(String date) throws ParseException {
-        String yMd = "dd.MM.yyyy";
-        LocalDate dt1 = LocalDate.parse(date, DateTimeFormatter.ofPattern(yMd));
+        DateTimeFormatter yMd = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDate dt1 = LocalDate.parse(date, yMd);
         for (int i = 5; i > 0; i--) {
             LocalDate future = dt1.minusDays(i); // Создаем новый объект, вычитая дни
-            int year = future.getYear();
-            int month = future.getMonthValue();
-            int dayOfMonth = future.getDayOfMonth();
-            System.out.printf("Минус " + i + " дней %d.%d.%d \n", dayOfMonth, month, year);
+            System.out.println("Минус " + i + " дней " + yMd.format(future));
         }
         for (int i = 1; i < 6; i++) {
             LocalDate future = dt1.plusDays(i); // Создаем новый объект, прибавляя дни
-            int year = future.getYear();
-            int month = future.getMonthValue();
-            int dayOfMonth = future.getDayOfMonth();
-            System.out.printf("Плюс " + i + " дней %d.%d.%d \n", dayOfMonth, month, year);
+            System.out.println("Плюс " + i + " дней " + yMd.format(future));
         }
         System.out.println();
     }
@@ -145,21 +141,8 @@ public class Library {
         LocalDate friday = dt1.with(DayOfWeek.FRIDAY);
         LocalDate saturday = dt1.with(DayOfWeek.SATURDAY);
         LocalDate sunday = dt1.with(DayOfWeek.SUNDAY);
-        if (dt1 == monday){
-            System.out.println("Нужно отнять 0 дней чтобы получился понедельник");
-        } else if (dt1 == tuesday) {
-            System.out.println("Нужно отнять 1 дней чтобы получился понедельник");
-        } else if (dt1 == wednesday) {
-            System.out.println("Нужно отнять 2 дней чтобы получился понедельник");
-        } else if (dt1 == thursday) {
-            System.out.println("Нужно отнять 3 дней чтобы получился понедельник");
-        } else if (dt1 == friday) {
-            System.out.println("Нужно отнять 4 дней чтобы получился понедельник");
-        } else if (dt1 == saturday) {
-            System.out.println("Нужно отнять 5 дней чтобы получился понедельник");
-        } else {
-            System.out.println("Нужно отнять 6 дней чтобы получился понедельник");
-        }
+        long count = ChronoUnit.DAYS.between(monday, dt1);
+        System.out.println("Нужно отнять " + count+ " дней чтобы получился понедельник");
         System.out.println("понедельник это " + monday + "\n" +
                 "вторник это " + tuesday + "\n" +
                 "среда это " + wednesday + "\n" +
@@ -170,12 +153,12 @@ public class Library {
     }
 
     public static void task8519(String date) throws ParseException {
-        Calendar calendar = new GregorianCalendar();
-        DateFormat df = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-        Date date1 = df.parse(date);
-        calendar.setTime(date1);
-        calendar.setTimeZone(TimeZone.getTimeZone("+03:00"));
-        System.out.println(df.format(calendar.getTime()));
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy");
+        LocalDateTime noZone = LocalDateTime.parse(date, fmt);
+        ZonedDateTime omsk = noZone.atZone(ZoneId.of("UTC+06:00"));
+        ZonedDateTime nsk = omsk.withZoneSameInstant(ZoneId.of("UTC+07:00"));
+        System.out.println("Когда в Омске " + omsk.format(fmt) + "\n" +
+                "в Новосибирске " + nsk.format(fmt));
     }
 
     public static void task2130(String utc) throws ParseException {
