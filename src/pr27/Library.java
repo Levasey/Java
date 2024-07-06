@@ -6,11 +6,8 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
 public class Library {
     public static void task3123(String first, String second) throws ParseException {
@@ -143,16 +140,10 @@ public class Library {
         LocalDate sunday = dt1.with(DayOfWeek.SUNDAY);
         long count = ChronoUnit.DAYS.between(monday, dt1);
         System.out.println("Нужно отнять " + count + " дней чтобы получился понедельник");
-        System.out.println("понедельник это " + monday + "\n" +
-                "вторник это " + tuesday + "\n" +
-                "среда это " + wednesday + "\n" +
-                "четверг это " + thursday + "\n" +
-                "пятница это " + friday + "\n" +
-                "суббота это " + saturday + "\n" +
-                "воскресенье это " + sunday + "\n");
+        System.out.println("понедельник это " + monday + "\n" + "вторник это " + tuesday + "\n" + "среда это " + wednesday + "\n" + "четверг это " + thursday + "\n" + "пятница это " + friday + "\n" + "суббота это " + saturday + "\n" + "воскресенье это " + sunday + "\n");
     }
 
-    public static void task8519(String date) throws ParseException {
+    public static void task8519(String date) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy");
         LocalDateTime noZone = LocalDateTime.parse(date, fmt);
         ZonedDateTime omsk = noZone.atZone(ZoneId.of("UTC+06:00"));
@@ -170,7 +161,7 @@ public class Library {
         System.out.println();
     }
 
-    public static void task2130(String utc) throws ParseException {
+    public static void task2130(String utc) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime noZone = LocalDateTime.parse("2023-06-28 18:27", fmt);
         ZonedDateTime greenvich = noZone.atZone(ZoneId.of("UTC+00:00"));
