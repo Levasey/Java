@@ -23,11 +23,11 @@ public class Task6 {
 //Устанави подключение к файлу Базы Данных
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);
 //Подготовь запрос
-        String sql = "SELECT  TrackId, Name, Composer FROM tracks WHERE Name LIKE '%?%' OR Composer LIKE '%?%'";
+        String sql = "SELECT  TrackId, Name, Composer FROM tracks WHERE Name LIKE ? OR Composer LIKE ?";
         PreparedStatement statement = connection.prepareStatement(sql);
 //укажи, что вместо вопроса нужно подставить значение от пользователя
-        statement.setString(1, text);
-        statement.setString(2, text);
+        statement.setString(1, "%" + text + "%");
+        statement.setString(2, "%" + text + "%");
 //выполни запрос
         ResultSet rs = statement.executeQuery();
 //если в результате есть данные, перейди к первой/следующей строчке

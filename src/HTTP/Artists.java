@@ -1,4 +1,4 @@
-package sql_subd;
+package HTTP;
 
 public class Artists {
     public String artistId;
