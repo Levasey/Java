@@ -28,21 +28,22 @@ public class Task8 {
 //Устанави подключение к файлу Базы Данных
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);
 //Подготовь запрос
-        String sql = "SELECT Name, Milliseconds, UnitPrice, Composer FROM tracks WHERE TrackId=?";
+        String sql = "SELECT Name, Milliseconds, UnitPrice, Composer, albumId FROM tracks WHERE TrackId=?";
         PreparedStatement statement = connection.prepareStatement(sql);
 //укажи, что вместо вопроса нужно подставить значение от пользователя
-        Map<String, Albums> albumsMap = getAlbums(connection);
-        for (int i = 0; i < albumsMap.size(); i++) {
-            Albums id = albumsMap.get(i);
-            String albumId = id.getAlbumId();
-        }
         statement.setInt(1, Integer.parseInt(TrackId));
 //выполни запрос
         ResultSet rs = statement.executeQuery();
 //если в результате есть данные, перейди к первой/следующей строчке
+        Map<String, Albums> albumsMap = getAlbums(connection);
         while (rs.next()) {
             Tracks tracks = new Tracks();
+            tracks.albumId = rs.getString("albumId");
+
+            Albums a = albumsMap.get(tracks.albumId);
+            String title  = a.getTitle();
             //в текущей строчке результата(таблицы) прочитай данные из колонки Name
+
             tracks.name = rs.getString("Name");
             tracks.composer = rs.getString("Composer");
             tracks.milliseconds = rs.getString("Milliseconds");

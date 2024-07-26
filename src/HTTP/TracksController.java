@@ -8,7 +8,7 @@ public class TracksController {
         StringBuilder str = new StringBuilder("<ol>\n");
         for (int i = 0; i < tracks.size(); i++) {
             Tracks text = tracks.get(i);
-            str.append("<li><a href=\"track").append(text.trackId).append(" ").append(text.name).append(" albumId ").append(text.albumId).append("\"></li>\n");
+            str.append("<li><a href=\"track").append(text.trackId).append("\"> ").append(text.name).append(" albumId\"").append(text.albumId).append("<\"/li>\n");
         }
         str.append("</ol>\n");
         return str.toString();

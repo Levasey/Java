@@ -3,12 +3,12 @@ package HTTP;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ArtistsController {
+public class ArtistListController {
     public static String format(ArrayList<Artists> artists){
         StringBuilder str = new StringBuilder("<ol>\n");
         for (int i = 0; i < artists.size(); i++) {
             Artists text = artists.get(i);
-            str.append("<li><a href=\"artist").append(i).append("\">").append(text.name).append("</li>\n");
+            str.append("<li><a href=\"artist?artist_id=").append(i).append("\">").append(text.name).append("</li>\n");
         }
         str.append("</ol>\n");
         return str.toString();
