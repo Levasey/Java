@@ -1,20 +1,20 @@
 package sql_subd;
 
 public class Albums {
-    private String albumId;
+    private int albumId;
     private String title;
-    private String artistId;
-    public Albums(String albumId, String title, String artistId) {
+    private int artistId;
+    public Albums(int albumId, String title, int artistId) {
             this.albumId = albumId;
             this.title = title;
             this.artistId = artistId;
         }
 
-        public String getArtistId() {
+        public int getArtistId() {
             return artistId;
         }
 
-        public String getAlbumId() {
+        public int getAlbumId() {
             return albumId;
         }
 

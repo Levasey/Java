@@ -8,15 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlbumDataAccess {
-    public static Map<String, Albums> getAlbums(Connection connection) throws SQLException {
+    public static Map<Integer, Albums> getAlbums(Connection connection) throws SQLException {
             String selectAlbums = "select albumId, Title, artistId from albums";
             PreparedStatement statementAlbums = connection.prepareStatement(selectAlbums);
             ResultSet resultAlbums = statementAlbums.executeQuery();
-            Map<String, Albums> albumIdToNameMap = new HashMap<>();
+            Map<Integer, Albums> albumIdToNameMap = new HashMap<>();
             while(resultAlbums.next()) {
-                String id = resultAlbums.getString("albumId");
+                int id = resultAlbums.getInt("albumId");
                 String title = resultAlbums.getString("Title");
-                String artistId = resultAlbums.getString("artistId");
+                int artistId = resultAlbums.getInt("artistId");
                 Albums a = new Albums(id, title, artistId);
                 albumIdToNameMap.put(id, a);
             }
