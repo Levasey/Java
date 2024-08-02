@@ -8,7 +8,7 @@ public class AlbumsController {
         StringBuilder str = new StringBuilder("<ol>\n");
         for (int i = 0; i < albums.size(); i++) {
             Albums text = albums.get(i);
-            str.append("<li><a href=\"album").append(text.albumId).append(" ").append(text.title).append(" artist ").append(text.artistId).append("\"></li>\n");
+            str.append("<li><a href=\"album").append(text.albumId).append("\"> ").append(text.title).append(" artist ").append(text.artistId).append("</li>\n");
         }
         str.append("</ol>\n");
         return str.toString();
