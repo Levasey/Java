@@ -11,7 +11,7 @@ public class AtristHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String query = exchange.getRequestURI().getQuery();
         int index = query.indexOf("=");
-        String artistId = query.substring(index + 1, query.length());
+        int artistId = Integer.parseInt(query.substring(index + 1, query.length()));
         String page = null;
         try {
             page = "<!DOCTYPE html>\n" +
@@ -19,7 +19,7 @@ public class AtristHandler implements HttpHandler {
                     "<head>\n" +
                     "<meta charset=\"utf-8\"/>\n" +
                     "<head/>\n" +
-                    "<body>\n" + ArtistController.getArtist(artistId) +
+                    "<body>\n" + ArtistController.format(artistId) +
                     "</body>\n" +
                     "</html>";
         } catch (SQLException e) {

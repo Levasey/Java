@@ -1,4 +1,4 @@
-package sql_subd;
+package dto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GenreDataAccess {
-    public static Map<Integer, Genres> getGenres(Connection connection) throws SQLException{
+    public static Map<Integer, Genres> getGenresData(Connection connection) throws SQLException{
         String selectGenres = "SELECT genreId, name FROM genres";
         PreparedStatement statementGenres;
         statementGenres = connection.prepareStatement(selectGenres);

@@ -1,43 +1,35 @@
 package HTTP;
 
+import dto.Artists;
+
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.Map;
+
+import static dto.ArtistDataAccess.getArtistData;
+
 
 public class ArtistListController {
-    public static StringBuilder format(ArrayList<Artists> artists){
+    public static StringBuilder format() throws SQLException {
+        Map<Integer, Artists> artistsMap;
+        try {
+            String path = "./Task/files/task7361/chinook.db";
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
+            artistsMap = getArtistData(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         StringBuilder str = new StringBuilder("<ol>\n");
-        for (int i = 0; i < artists.size(); i++) {
-            Artists text = artists.get(i);
-            str.append("<li><a href=\"artist?artist_id=").append(i).append("\">").append(text.name).append("</li>\n");
+        for (int i = 1; i < artistsMap.size(); i++) {
+            Artists text = artistsMap.get(i);
+            str.append("<li><a href=\"artist?artist_id=").append(i).append("\">").append(text.getName()).append("</li>\n");
         }
         str.append("</ol>\n");
         return str;
     }
 
-    public static ArrayList<Artists> getData() throws SQLException {
-        ArrayList<Artists> a = new ArrayList<>();
-        String path = "./Task/files/task7361/chinook.db";
-//Устанави подключение к файлу Базы Данных
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);
-//Подготовь запрос
-        String sql = "SELECT ArtistId, Name  FROM artists";
-        PreparedStatement statement = connection.prepareStatement(sql);
-//выполни запрос
-        ResultSet rs = statement.executeQuery();
-//если в результате есть данные, перейди к первой/следующей строчке
-        while (rs.next()) {
-            Artists artists = new Artists();
-            artists.artistId = rs.getString("ArtistId");
-            artists.name = rs.getString("Name");
-            a.add(artists);
-        }
-        return a;
-    }
-
     public static void main(String[] args) throws SQLException {
-        ArrayList<Artists> a = getData();
-        StringBuilder b = format(a);
-        System.out.println(b);
+        StringBuilder str = format();
+        System.out.println(str);
     }
 }
 

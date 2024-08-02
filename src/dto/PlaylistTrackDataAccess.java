@@ -1,4 +1,4 @@
-package sql_subd;
+package dto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

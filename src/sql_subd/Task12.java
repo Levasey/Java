@@ -1,5 +1,10 @@
 package sql_subd;
 
+import dto.PlaylistTrack;
+import dto.PlaylistTrackDataAccess;
+import dto.TrackDataAccess;
+import dto.Tracks;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +17,7 @@ public class Task12 {
         int id = scanner.nextInt();
         String path = "./Task/files/task7361/chinook.db";
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);
-        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracks(connection);
+        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracksData(connection);
         Map<Integer, PlaylistTrack> playlistTrackMap = PlaylistTrackDataAccess.getPlaylistTrack(connection);
         int count = 0;
         PlaylistTrack playlistTrack = playlistTrackMap.get(id);

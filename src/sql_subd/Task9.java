@@ -1,5 +1,10 @@
 package sql_subd;
 
+import dto.AlbumDataAccess;
+import dto.Albums;
+import dto.TrackDataAccess;
+import dto.Tracks;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,8 +17,8 @@ public class Task9 {
         int albumId = scanner.nextInt();
         String path = "./Task/files/task7361/chinook.db";
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
-        Map<Integer, Albums> albumsMap = AlbumDataAccess.getAlbums(connection);
-        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracks(connection);
+        Map<Integer, Albums> albumsMap = AlbumDataAccess.getAlbumsData(connection);
+        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracksData(connection);
         Albums a = albumsMap.get(albumId);
         String title  = a.getTitle();
         System.out.println("Альбом: " + title);

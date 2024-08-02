@@ -1,8 +1,9 @@
 package sql_subd;
 
+import dto.TrackDataAccess;
+import dto.Tracks;
+
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Task6 {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine();
-        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracks(connection);
+        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracksData(connection);
         for (int i = 1; i < tracksMap.size(); i++) {
             Tracks tracks = tracksMap.get(i);
             int id = tracks.getTrackId();

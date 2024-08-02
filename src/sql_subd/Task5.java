@@ -1,5 +1,8 @@
 package sql_subd;
 
+import dto.TrackDataAccess;
+import dto.Tracks;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,7 +15,7 @@ public class Task5 {
         int albumId1 = scanner.nextInt();
         int albumId2 = scanner.nextInt();
         int albumId3 = scanner.nextInt();
-        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracks(connection);
+        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracksData(connection);
         for (int i = 1; i < tracksMap.size(); i++) {
             Tracks tracks = tracksMap.get(i);
             int albumId = tracks.getAlbumId();

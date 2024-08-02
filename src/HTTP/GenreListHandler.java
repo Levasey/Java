@@ -7,17 +7,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-public class ArtistListHandler implements HttpHandler {
+public class GenreListHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
-        StringBuilder artists = null;
+        StringBuilder genres = null;
         try {
-            artists = ArtistListController.format();
+            genres = GenreListController.format();
             String page = "<!DOCTYPE html>\n" +
                     "<html>\n" +
                     "<head>\n" +
                     "<meta charset=\"utf-8\"/>\n" +
                     "<head/>\n" +
-                    "<body>\n" + artists +
+                    "<body>\n" + genres +
                     "</body>\n" +
                     "</html>";
             exchange.sendResponseHeaders(200, page.getBytes().length);

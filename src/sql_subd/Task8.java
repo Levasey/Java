@@ -1,5 +1,7 @@
 package sql_subd;
 
+import dto.*;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Scanner;
@@ -10,9 +12,9 @@ public class Task8 {
         int trackId = scanner.nextInt();
         String path = "./Task/files/task7361/chinook.db";
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
-        Map<Integer, Albums> albumsMap = AlbumDataAccess.getAlbums(connection);
-        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracks(connection);
-        Map<Integer, Genres> genresMap = GenreDataAccess.getGenres(connection);
+        Map<Integer, Albums> albumsMap = AlbumDataAccess.getAlbumsData(connection);
+        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracksData(connection);
+        Map<Integer, Genres> genresMap = GenreDataAccess.getGenresData(connection);
         Tracks tracks = tracksMap.get(trackId);
         int albumId = tracks.getAlbumId();
         int genreId = tracks.getGenreId();

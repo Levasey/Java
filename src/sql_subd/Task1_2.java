@@ -1,5 +1,8 @@
 package sql_subd;
 
+import dto.TrackDataAccess;
+import dto.Tracks;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,7 +14,7 @@ public class Task1_2 {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);
         Scanner scanner = new Scanner(System.in);
         int albumId = scanner.nextInt();
-        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracks(connection);
+        Map<Integer, Tracks> tracksMap = TrackDataAccess.getTracksData(connection);
         Tracks tracks = tracksMap.get(albumId);
         String name = tracks.getName();
         String milliseconds = tracks.getMilliseconds();

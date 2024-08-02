@@ -1,4 +1,4 @@
-package sql_subd;
+package dto;
 
 public class Albums {
     private int albumId;

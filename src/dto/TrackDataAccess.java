@@ -1,4 +1,4 @@
-package sql_subd;
+package dto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TrackDataAccess {
-    public static Map<Integer, Tracks> getTracks(Connection connection) throws SQLException {
+    public static Map<Integer, Tracks> getTracksData(Connection connection) throws SQLException {
         String selectTracks = "select trackId, Name, albumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice " +
                 "FROM tracks ";
         PreparedStatement statementAlbums = connection.prepareStatement(selectTracks);
