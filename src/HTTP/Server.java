@@ -13,6 +13,8 @@ public class Server {
         server.createContext("/artist", new AtristHandler());
         server.createContext("/album", new TracksHandler());
         server.createContext("/genre", new GenreHandler());
+        server.createContext("/playlists", new PlayListHandler());
+        server.createContext("/add_playlist", new Add_playlistHandler());
         server.setExecutor(null);
         server.start();
     }

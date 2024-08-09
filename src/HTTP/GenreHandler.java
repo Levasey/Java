@@ -23,6 +23,8 @@ public class GenreHandler implements HttpHandler {
                     "</body>\n" +
                     "</html>";
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
         exchange.sendResponseHeaders(200, page.getBytes().length);

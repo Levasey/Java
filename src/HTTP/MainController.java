@@ -5,6 +5,7 @@ public class MainController {
         return "<ol>" +
                 "<li><a href='/artist_list'>Список исполнителей</a></li>" +
                 "<li><a href='/genre_list'>Список жанров</a></li>" +
+                "<li><a href='/playlists'>Список плейлистов</a></li>" +
                 "</ol>";
     }
 }
