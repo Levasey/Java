@@ -15,6 +15,7 @@ public class Server {
         server.createContext("/genre", new GenreHandler());
         server.createContext("/playlists", new PlayListHandler());
         server.createContext("/add_playlist", new Add_playlistHandler());
+        server.createContext("/add_track", new Add_trackHandler());
         server.setExecutor(null);
         server.start();
     }

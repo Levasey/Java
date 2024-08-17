@@ -42,4 +42,21 @@ public class TracksController {
         str.append("</ol>\n");
         return str.toString();
     }
+
+    public static StringBuilder allTracks(){
+        Map<Integer, Tracks> tracksMap;
+        try {
+            String path = "./Task/files/task7361/chinook.db";
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
+            tracksMap = getTracksData(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        StringBuilder str = new StringBuilder();
+        for (Integer key : tracksMap.keySet()){
+            Tracks tracks = tracksMap.get(key);
+            str.append("<option id=\"").append(tracks.getTrackId()).append("\">").append(tracks.getName()).append("</option>\"");
+        }
+        return str;
+    }
 }
