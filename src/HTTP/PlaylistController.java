@@ -24,7 +24,6 @@ public class PlaylistController {
         }
         StringBuilder str = new StringBuilder();
         str.append("<ol>");
-
         for (Integer key : playlistMap.keySet()) {
             Playlist playlist = playlistMap.get(key);
             str.append("<li> <a href=\"add_playlist?add_playlist=").append(playlist.getPlaylistId()).append("\"> ").append(playlist.getName()).append("</li>\n");
