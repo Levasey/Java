@@ -40,4 +40,22 @@ public class PlaylistDataAccess {
         }
         return playlistMap;
     }
+
+    public static Map<Integer, Playlist> removeDataFromPlaylist(Connection connection,int playlistId) throws SQLException{
+        String deletePlaylist = "DELETE FROM Playlists WHERE playlistId=?";
+        PreparedStatement statementPlaylist = connection.prepareStatement(deletePlaylist);
+        statementPlaylist.setInt(1, playlistId);
+        statementPlaylist.execute();
+                String selectPlaylist = "SELECT playlistId, name FROM playlists";
+        PreparedStatement preparedStatement = connection.prepareStatement(selectPlaylist);
+        ResultSet resultPlaylist = preparedStatement.executeQuery();
+        Map<Integer, Playlist> playlistMap = new HashMap<>();
+        while (resultPlaylist.next()) {
+            int id = resultPlaylist.getInt("playlistId");
+            String name = resultPlaylist.getString("name");
+            Playlist playlist = new Playlist(id, name);
+            playlistMap.put(id, playlist);
+        }
+        return playlistMap;
+    }
 }

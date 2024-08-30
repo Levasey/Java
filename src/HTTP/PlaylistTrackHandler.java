@@ -6,28 +6,22 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class PlaylistTrackHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
-        String query = exchange.getRequestURI().getQuery();
+        Scanner s = new Scanner(exchange.getRequestBody());
+        String query = s.nextLine();
         int index1 = query.indexOf("=");
+        int index3 = query.indexOf("&");
         int index2 = query.lastIndexOf("=");
-        int playListId = Integer.parseInt(query.substring(index1 + 1, index2 - 1));
+        int playListId = Integer.parseInt(query.substring(index1 + 1, index3));
         int trackId = Integer.parseInt(query.substring(index2 + 1, query.length()));
-        String page = null;
-        try {
-            page = "<!DOCTYPE html>\n" +
-                    "<html>\n" +
-                    "<head>\n" +
-                    "<meta charset=\"utf-8\"/>\n" +
-                    "<head/>\n" +
-                    "<body>\n" + PlaylistTrackController.format(playListId) +
-                    "</body>\n" +
-                    "</html>";
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        exchange.sendResponseHeaders(200, page.getBytes().length);
+
+        String page = "" + PlaylistTrackController.addTrackToPlaylist(playListId, trackId);
+
+        exchange.getResponseHeaders().add("Location", "/add_playlist?/add_playlist=" + playListId);
+        exchange.sendResponseHeaders(303, page.getBytes().length);
         PrintWriter writer = new PrintWriter(exchange.getResponseBody());
         writer.write(page);
         writer.close();

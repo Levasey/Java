@@ -24,6 +24,11 @@ public class Tracks {
         this.unitPrice = unitPrice;
     }
 
+    public Tracks(int trackId, String name) {
+        this.trackId = trackId;
+        this.name = name;
+    }
+
     public int getTrackId() {
         return trackId;
     }
