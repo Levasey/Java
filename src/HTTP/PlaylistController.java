@@ -26,13 +26,16 @@ public class PlaylistController {
         str.append("<ol>");
         for (Integer key : playlistMap.keySet()) {
             Playlist playlist = playlistMap.get(key);
-            str.append("<li> <a href=\"add_playlist?add_playlist=").append(playlist.getPlaylistId()).append("\"> ").append(playlist.getName()).append("</li>\n");
+            str.append("<li> <a href=\"add_playlist?add_playlist=").append(playlist.getPlaylistId()).append("\"> ")
+                    .append(playlist.getName()).append("</li>\n");
         }
         str.append("</ol>");
         return str;
     }
-     public static StringBuilder allPlaylist(){
+
+    public static StringBuilder allPlaylistSet() {
         Map<Integer, Playlist> playlistMap;
+        StringBuilder str = new StringBuilder();
         try {
             String path = "./Task/files/task7361/chinook.db";
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
@@ -40,11 +43,37 @@ public class PlaylistController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        StringBuilder str = new StringBuilder();
-        for (Integer key : playlistMap.keySet()){
+        str.append("<ol>");
+        for (Integer key : playlistMap.keySet()) {
             Playlist playlist = playlistMap.get(key);
-            str.append("<option id=\"").append(playlist.getPlaylistId()).append("\">").append(playlist.getName()).append("</option>\"");
+            str.append("<li> <a href=\"add_playlist?add_playlist=").append(playlist.getPlaylistId())
+                    .append("\"class=\"button listButton\">").append(playlist.getName())
+                    .append("</a><a href=\"del_playlist?del_playlist=").append(playlist.getPlaylistId())
+                    .append("\"class=\"button delButton\">Delete</a></li>\n");
         }
+        str.append("</ol>");
+        return str;
+    }
+
+    public static StringBuilder delPlaylist(int playlistId){
+        Map<Integer, Playlist> playlistMap;
+        StringBuilder str = new StringBuilder();
+        try {
+            String path = "./Task/files/task7361/chinook.db";
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + path);//Устанави подключение к файлу Базы Данных
+            playlistMap = PlaylistDataAccess.removeDataFromPlaylist(connection, playlistId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        str.append("<ol>");
+        for (Integer key : playlistMap.keySet()) {
+            Playlist playlist = playlistMap.get(key);
+            str.append("<li> <a href=\"add_playlist?add_playlist=").append(playlist.getPlaylistId())
+                    .append("\"class=\"button listButton\">").append(playlist.getName())
+                    .append("</a><a href=\"del_playlist?del_playlist=").append(playlist.getPlaylistId())
+                    .append("\"class=\"button delButton\">Delete</a></li>\n");
+        }
+        str.append("</ol>");
         return str;
     }
 }

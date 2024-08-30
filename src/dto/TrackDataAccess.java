@@ -14,7 +14,7 @@ public class TrackDataAccess {
         PreparedStatement statementAlbums = connection.prepareStatement(selectTracks);
         ResultSet resultTracks = statementAlbums.executeQuery();
         Map<Integer, Tracks> trackIdToNameMap = new HashMap<>();
-        while(resultTracks.next()) {
+        while (resultTracks.next()) {
             int id = resultTracks.getInt("trackId");
             String name = resultTracks.getString("Name");
             int albumId = resultTracks.getInt("albumId");
@@ -26,6 +26,21 @@ public class TrackDataAccess {
             String unitPrice = resultTracks.getString("UnitPrice");
             Tracks tracks = new Tracks(id, name, albumId, mediaTypeId, genreId, composer, milliseconds, bytes, unitPrice);
             trackIdToNameMap.put(id, tracks);
+        }
+        return trackIdToNameMap;
+    }
+
+    public static Map<Integer, Tracks> getTrack(Connection connection, int playlistId) throws SQLException {
+        String select = "SELECT trackId, name FROM tracks WHERE trackId NOT IN (SELECT trackId FROM playlist_track WHERE playlistId=?)";
+        PreparedStatement statementTrack = connection.prepareStatement(select);
+        statementTrack.setInt(1, playlistId);
+        ResultSet resultTracks = statementTrack.executeQuery();
+        Map<Integer, Tracks> trackIdToNameMap = new HashMap<>();
+        while (resultTracks.next()) {
+            int id = resultTracks.getInt("trackId");
+            String name = resultTracks.getString("Name");
+            Tracks track = new Tracks(id, name);
+            trackIdToNameMap.put(id, track);
         }
         return trackIdToNameMap;
     }
